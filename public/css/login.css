@@ -1,0 +1,89 @@
+/* colores */
+.b-login {
+  /* background-color: aquamarine; */
+  display: flex;
+  justify-content: space-evenly;
+  /*     border: 1px solid $main;
+  padding: .5em;
+  border-radius: 50px; */
+}
+.b-login .info {
+  /* background-color: red; */
+  /* background-color: red; */
+  width: 60%;
+  display: flex;
+  text-align: left;
+  border-left: 1px solid #66754c;
+  flex-direction: column;
+  /* align-items: center;
+
+  /* align-items: center; */
+}
+.b-login .info .title {
+  /* padding-left: 1em; */
+  font-size: 30px;
+  width: 50%;
+  margin-left: 1em;
+  font-family: Jost;
+  color: #5a6743;
+  letter-spacing: 3px;
+  font-weight: 600;
+  background-color: white;
+}
+.b-login .info .title ul {
+  line-height: 1em;
+  height: 1em;
+  overflow: hidden;
+  margin: 0.5em;
+  /* background-color: #C2C5A4; */
+}
+.b-login .info .title ul li {
+  list-style: none;
+  position: relative;
+  padding-left: 0.5em;
+  top: 0;
+  animation: bajar 9s steps(3) infinite;
+}
+.b-login .info .title ul li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-left: 1px solid #5a6743;
+  background-color: white;
+  animation: escribir 3s steps(13) infinite;
+}
+.b-login .info p {
+  width: 90%;
+  margin-left: 1.5em;
+  text-align: justify;
+  text-indent: 2em;
+}
+.b-login .info img {
+  /* margin-top: 1em; */
+  width: 60%;
+  align-self: end;
+}
+.b-login .form {
+  background-color: #f6eedb;
+  width: 40%;
+  padding: 2em 1em 2em 2em;
+  margin-right: 1em;
+}
+
+@keyframes escribir {
+  40%, 60% {
+    left: calc(100% + 4px);
+  }
+  100% {
+    left: 0%;
+  }
+}
+@keyframes bajar {
+  100% {
+    top: -3em;
+  }
+}
+
+/*# sourceMappingURL=login.css.map */
