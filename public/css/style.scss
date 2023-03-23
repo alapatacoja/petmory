@@ -43,7 +43,7 @@ header {
     justify-content: space-evenly;
     border-bottom: 1px solid $main;
     margin-bottom: .5em;
-
+    user-select: none;
     .logo {
         /*  background-color: red; */
         /*         display: flex;
@@ -228,8 +228,8 @@ footer {
     padding: 1em;
     display: flex;
     flex-direction: column;
-    /* overflow-y: visible; */
-    /* overflow-x: hidden; */
+    overflow-y: visible;
+    overflow-x: hidden;
     align-items: center;
     margin-right: .5em
 
@@ -284,7 +284,7 @@ footer {
 .chat {
     background-color: aquamarine;   
     width: 60%;
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -387,3 +387,8 @@ footer {
     background-color: #8e9b6d;
 }
 
+/* seleccion de texto */
+::selection {
+    color: white;
+    background: $main;
+  }

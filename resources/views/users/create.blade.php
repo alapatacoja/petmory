@@ -29,9 +29,9 @@
     </header>
 
     <div class="body b-login">
-        <div class="form">
-            <h2>{{ __('general.register') }}</h2>
-            <h5><span class="red">{{ __('general.fields', ['char' => '*']) }}</span></h5>
+        <div class="form"><div> <h2>{{ __('general.register') }}</h2>
+            <h5 class="red">{{ __('general.fields', ['char' => '*']) }}</h5></div>
+           
             <form action="" method="post">
                 @csrf
 

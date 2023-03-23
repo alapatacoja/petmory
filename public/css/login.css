@@ -3,6 +3,9 @@
   /* background-color: aquamarine; */
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  padding: 0;
   /*     border: 1px solid $main;
   padding: .5em;
   border-radius: 50px; */
@@ -13,8 +16,10 @@
   width: 60%;
   display: flex;
   text-align: left;
-  border-left: 1px solid #66754c;
+  height: 90%;
   flex-direction: column;
+  border-left: 1px solid #66754c;
+  justify-content: space-between;
   /* align-items: center;
 
   /* align-items: center; */
@@ -29,6 +34,7 @@
   letter-spacing: 3px;
   font-weight: 600;
   background-color: white;
+  user-select: none;
 }
 .b-login .info .title ul {
   line-height: 1em;
@@ -68,8 +74,9 @@
 .b-login .form {
   background-color: #f6eedb;
   width: 40%;
+  height: 80%;
+  margin-right: 0.5em;
   padding: 2em 1em 2em 2em;
-  margin-right: 1em;
 }
 
 @keyframes escribir {

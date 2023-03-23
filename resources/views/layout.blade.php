@@ -24,7 +24,6 @@
     <div class="body">
         @yield('content')
     </div>
-    <div class="side">@yield('sidebar')</div>
     @include('partials/footer')
 </body>
 
