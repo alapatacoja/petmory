@@ -19,3 +19,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('user', UserController::class);
+
+Route::get('/prueba', function () {
+    
+    return view('pruebas');
+})->name('prueba');

@@ -10,10 +10,10 @@ $v3: #5a6743;
 html,
 body {
     background-color: white;
-    overflow-x: hidden;
-    height: 100%;
+    /* overflow-x: hidden; */
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -25,8 +25,10 @@ body {
     align-items: center;
     justify-content: space-between;
     overflow-y: scroll;
-
+    height: fit-content;
+    overflow-x: hidden;
 }
+
 
 /* header */
 header {
@@ -44,6 +46,8 @@ header {
     border-bottom: 1px solid $main;
     margin-bottom: .5em;
     user-select: none;
+    scroll-behavior: smooth;
+
     .logo {
         /*  background-color: red; */
         /*         display: flex;
@@ -199,40 +203,41 @@ header {
 /* footer */
 footer {
     background-color: $main;
-    padding: .1em;
-    display: flex;
-    justify-content: center;
-    font-family: Jost;
-    color: white;
+    color: #fff;
+    padding: .3rem;
+    text-align: center;
     width: 100%;
-    margin-top: .5em;
+    font-family: Jost;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 1.3em;
 }
 
 /* contenido */
 
 .body {
     text-align: justify;
-    width: 95%;
     flex: 1 1 auto;
     /* background-color: #66754c; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 10em;
+
 }
 
 /* inicio */
 
 .posts {
-    background-color: #f6eedb;
-    padding: 1em;
+    /* background-color: #f6eedb; */
+    /* padding: 1em; */
     display: flex;
     flex-direction: column;
-    overflow-y: visible;
-    overflow-x: hidden;
+    /*     overflow-y: visible;
+    overflow-x: hidden; */
     align-items: center;
-    margin-right: .5em
-
+    margin-left: 20em;
+    margin-right: 1em;
+    padding: 1em .5em;
 }
 
 .post {
@@ -281,36 +286,64 @@ footer {
 
 }
 
+.post:hover {
+    background-color: $blanco;
+    cursor: pointer;
+
+    border-radius: 10px;
+    transition:ease-in-out;
+
+}
+
 .chat {
-    background-color: aquamarine;   
-    width: 60%;
+    /*     background-color: aquamarine;   
+    width: 60%; */
     /* position: fixed; */
+    /*     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    border: 1px solid $main; */
+    /* position: fixed; */
+    position: fixed;
+    top: 4.3em;
+    left: 0;
+    margin-left: 1em;
+    bottom: 2rem;
+    width: 20%;
+    height: 75%;
+    background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
     border: 1px solid $main;
-    .chat-header{
+
+    .chat-header {
         background-color: $main;
         /* width: 100%; */
         margin: 0;
         color: white;
         letter-spacing: 2px;
-        padding: .2em;
+        /* padding: .2em; */
         text-indent: 1em;
-        i{
+
+        i {
             margin-right: .5em;
         }
     }
-    .chat-input{
+
+    .chat-input {
         background-color: $main;
         padding: .5em;
+
         /* display: grid;
         grid-template-columns: repeat(3);
         grid-template-rows: 1fr; */
-        form{
+        form {
             display: flex;
-            input{
+
+            input {
                 padding: .5em;
                 border-radius: 20px;
                 text-indent: 5px;
@@ -318,46 +351,59 @@ footer {
                 margin-right: 5px;
                 /* grid-area: 1 / 1 / 2 / 3; */
             }
-            button{
+
+            button {
                 border-radius: 50%;
                 border: .2px solid $v1;
                 background-color: white;
                 cursor: pointer;
                 padding: .5em .7em;
-               /*  grid-area: 1 / 3 / 2 / 4; */
+                /*  grid-area: 1 / 3 / 2 / 4; */
             }
         }
-        
+
     }
-    .mensajes{
+
+    .mensajes {
         background-color: white;
         flex: 1;
         padding-top: .5em;
         overflow-y: scroll;
-        .mensaje, .mimensaje, .m-user, .mi-user{
+
+        /*  height: 50%; */
+        .mensaje,
+        .mimensaje,
+        .m-user,
+        .mi-user {
             width: fit-content;
-            padding: .5em 1em ;
+            padding: .5em 1em;
             border-radius: 10px;
             margin: .2em 1em .5em 1em;
-            
+
         }
-        .message{
+
+        .message {
             display: flex;
             flex-direction: column;
             font-size: small;
         }
-        .mi-user{
+
+        .mi-user {
             align-self: end;
         }
-        .m-user, .mi-user{
+
+        .m-user,
+        .mi-user {
             font-weight: 600;
             margin-left: .4em;
             padding-bottom: 0;
         }
-        .mensaje{
+
+        .mensaje {
             background-color: $v0;
         }
-        .mimensaje{
+
+        .mimensaje {
             background-color: $blanco;
             align-self: end;
             text-align: justify;
@@ -367,14 +413,14 @@ footer {
 
 /* scrollbar */
 * {
-    
+
     scrollbar-width: auto;
     scrollbar-color: #8e9b6d #f6eedb;
 }
 
 *::-webkit-scrollbar {
     width: 7px;
-    
+
 }
 
 *::-webkit-scrollbar-track {
@@ -383,7 +429,7 @@ footer {
 }
 
 *::-webkit-scrollbar-thumb {
-   /*  border: 2px solid $blanco; */
+    /*  border: 2px solid $blanco; */
     background-color: #8e9b6d;
 }
 
@@ -391,4 +437,16 @@ footer {
 ::selection {
     color: white;
     background: $main;
-  }
+}
+
+/*   footer {
+	background-color: #333;
+	color: #fff;
+	padding: 1rem;
+	text-align: center;
+	bottom: 0;
+	left: 0;
+    position: relative;
+    z-index: 500;
+	width: 100%;
+} */
