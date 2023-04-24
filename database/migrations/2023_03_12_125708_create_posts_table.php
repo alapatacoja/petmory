@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('slug')->nullable()->unique();
             $table->text('text');
             $table->enum('type', ['question', 'post', 'daily']);
-            $table->foreignId('pet_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

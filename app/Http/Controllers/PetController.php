@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pet;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class PetController extends Controller
 {
     /**
@@ -12,7 +12,6 @@ class PetController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -20,7 +19,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        //
+        return view('pets.create');
     }
 
     /**
@@ -28,7 +27,16 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pet = new Pet();
+        $pet->name = $request->get('name');
+        $pet->birthdate = $request->get('birth');
+        $pet->type = $request->get('type');
+        $pet->birthdate = $request->get('birthdate');
+        $pet->user_id = Auth::user()->id;
+        $pet->save();
+        if(isset($_POST['add']))
+            return redirect()->route('pets.create');
+        else return redirect()->route('users.show', Auth::user());
     }
 
     /**

@@ -6,6 +6,7 @@
   align-items: center;
   height: 100%;
   padding: 0;
+  margin: 0 2em;
   /*     border: 1px solid $main;
   padding: .5em;
   border-radius: 50px; */
@@ -13,7 +14,7 @@
 .b-login .info {
   /* background-color: red; */
   /* background-color: red; */
-  width: 60%;
+  width: 50%;
   display: flex;
   text-align: left;
   height: 90%;
@@ -73,9 +74,9 @@
 }
 .b-login .form {
   background-color: #f6eedb;
-  width: 40%;
+  width: 50%;
   height: 80%;
-  margin-right: 0.5em;
+  margin-right: 0.1em;
   padding: 2em 1em 2em 2em;
 }
 

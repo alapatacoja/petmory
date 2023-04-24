@@ -1,50 +1,255 @@
 @extends('layout')
 
 @section('content')
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <div class="content">
+        <div class="scroller">
+            <div class="profile">
+                <div class="top">
+                    <div class="pfp">
+                        <img src="/imgs/pfpdefault.png" alt="">
+                        <div class="names">
+                            <span>{{ __('general.nombre') }}</span>
+                            {{ $user->name }}
+                            <span>{{ __('general.usuario') }}</span>
+                            &#64;{{ $user->username }}
+                            @if ($user->type == 'admin')
+                                <i class="fa-solid fa-shield-heart"></i> ADMIN
+                            @endif
+                        </div>
+                    </div>
+                    <div class="stats">
+                        <span>{{ count($user->followers) }} {{ trans_choice('general.followers', count($user->followers)) }}</span>
+                        <span>{{ count($user->followings) }} {{ trans_choice('general.following', count($user->followings)) }}</span>
+                        @if ($user->type == 'group')
+                            <span>{{ count($user->recommenders) }}
+                            {{ trans_choice('general.recoms', count($user->followings)) }}</span>
+                        @endif
+                    </div>
 
-    @if (!Auth::check())
-        <div class="content">
-            <div class="scroller">
-                <div class="profile">
-                    <img src="/imgs/pfpdefault.png" alt="">
-                    <span class="user">username</span>
-                    <span class="bio"><h4>bio</h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia labore repudiandae, ipsa laudantium non omnis aperiam, quas quia alias sed blanditiis ab amet officiis nesciunt ullam eum id dolorem assumenda!</span>
                 </div>
-                <div class="daily"><img src="imgs/img1.png" alt=""></div>
-                <div class="p-posts">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!    
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae adipisci quis rem, magnam, a, quidem numquam dignissimos nemo nisi doloremque amet ipsa? Exercitationem accusamus optio recusandae vero quibusdam? Qui, voluptatem!
+
+
+                <div class="bottom">
+                    <div class="bio">
+                        @if ($user->bio != null)
+                            {{ $user->bio }}
+                        @else
+                            {{ __('general.nobio') }}
+                        @endif
+                    </div>
+                    <div class="buttons"><a href="">{{ __('general.follow') }}</a>
+                        @if ($user->type == 'group')
+                            <a href="">{{ __('general.recomendar') }}</a>
+                        @endif
+                    </div>
                 </div>
+
             </div>
-            <div class="pets"> d</div>
-            <div class="recoms"> e</div>
-            {{-- <div class="following">f </div> --}}
+
+            @if ($user->type == 'group')
+                <div class="links">b</div>
+            @endif
+            <div class="posts">
+                <div class="post">
+                    <div class="pfp"><img src="/imgs/pfpdefault.png" alt="">
+                        <div class="p-titles"><span class="p-title">post titulo</span><br>
+                            <span>user uwu</span>
+                        </div>
+
+                    </div>
+                    <div class="p-txt">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ea consectetur iusto modi explicabo
+                        alias
+                        quidem
+                        cum autem pariatur dolorum quod cumque ullam dicta cupiditate recusandae voluptatibus adipisci,
+                        repellendus
+                        neque?
+                    </div>
+                    <div class="p-img"> <img src="/imgs/img1.png" alt=""></div>
+                </div>
+                <hr>
+                <div class="post">
+                    <div class="pfp"><img src="/imgs/pfpdefault.png" alt="">
+                        <div class="p-titles"><span class="p-title">post titulo</span><br>
+                            <span>user uwu</span>
+                        </div>
+
+                    </div>
+                    <div class="p-txt">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ea consectetur iusto modi explicabo
+                        alias
+                        quidem
+                        cum autem pariatur dolorum quod cumque ullam dicta cupiditate recusandae voluptatibus adipisci,
+                        repellendus
+                        neque?
+                    </div>
+                    <div class="p-img"> <img src="/imgs/img1.png" alt=""></div>
+                </div>
+                <hr>
+                <div class="post">
+                    <div class="pfp"><img src="/imgs/pfpdefault.png" alt="">
+                        <div class="p-titles"><span class="p-title">post titulo</span><br>
+                            <span>user uwu</span>
+                        </div>
+
+                    </div>
+                    <div class="p-txt">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ea consectetur iusto modi explicabo
+                        alias
+                        quidem
+                        cum autem pariatur dolorum quod cumque ullam dicta cupiditate recusandae voluptatibus adipisci,
+                        repellendus
+                        neque?
+                    </div>
+                    <div class="p-img"> <img src="/imgs/img1.png" alt=""></div>
+                </div>
+                <hr>
+                <div class="post">
+                    <div class="pfp"><img src="/imgs/pfpdefault.png" alt="">
+                        <div class="p-titles"><span class="p-title">post titulo</span><br>
+                            <span>user uwu</span>
+                        </div>
+
+                    </div>
+                    <div class="p-txt">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ea consectetur iusto modi explicabo
+                        alias
+                        quidem
+                        cum autem pariatur dolorum quod cumque ullam dicta cupiditate recusandae voluptatibus adipisci,
+                        repellendus
+                        neque?
+                    </div>
+                    <div class="p-img"> <img src="/imgs/img1.png" alt=""></div>
+                </div>
+                <hr>
+            </div>
         </div>
-    @else
-        <div class="parent">
-            <div class="div1"> </div>
-            <div class="div2"> </div>
-            <div class="div3"> </div>
-            <div class="div4"> </div>
-            <div class="div5"> </div>
-            <div class="div6"> </div>
+
+        <div class="sidebar">
+            <div class="recoms">
+                <h3>{{ __('general.recomendaciones') }}
+                </h3>
+                @if (count($user->recomendations) == 0)
+                    {{ __('general.norecoms') }}
+                @else
+                    <ul>
+                        @foreach ($user->recomendations as $recom)
+                            <li><a href="{{ route('user.show', $recom) }}">&#64;{{ $recom->username }}</a></li>
+                        @endforeach
+
+                    </ul>
+                @endif
+            </div>
+            <div class="pets">
+                <h3>{{ __('general.pets') }}</h3>
+                @if (count($user->pets) == 0)
+                    {{ __('general.nopets') }}
+                @else
+                    <ul>
+                        @foreach ($user->pets as $pet)
+                            @if ($pet->deathdate != null)
+                                <li><i class="fa-solid fa-ribbon"></i> {{ $pet->name }} - @switch($pet->type)
+                                        @case('dog')
+                                            {{ __('general.dog') }}
+                                        @break
+
+                                        @case('cat')
+                                            {{ __('general.cat') }}
+                                        @break
+
+                                        @case('bird')
+                                            {{ __('general.bird') }}
+                                        @break
+
+                                        @case('ferret')
+                                            {{ __('general.ferret') }}
+                                        @break
+
+                                        @case('rodent')
+                                            {{ __('general.rodent') }}
+                                        @break
+
+                                        @case('bugs')
+                                            {{ __('general.bugs') }}
+                                        @break
+
+                                        @case('reptiles')
+                                            {{ __('general.reptiles') }}
+                                        @break
+
+                                        @case('fish')
+                                            {{ __('general.fish') }}
+                                        @break
+
+                                        @case('farm')
+                                            {{ __('general.farm') }}
+                                        @break
+
+                                        @case('other')
+                                            {{ __('general.other') }}
+                                        @break
+                                    @endswitch <br> <span class="memorial"> (
+                                        @if ($pet->birthdate == null)
+                                            ??
+                                        @else
+                                            {{ date('d/m/Y', strtotime($pet->birthdate)) }}
+                                            @endif - @if ($pet->deathdate == null)
+                                                ??
+                                            @else
+                                                {{ date('d/m/Y', strtotime($pet->deathdate)) }}
+                                            @endif )
+                                    </span></li>
+                            @else
+                                <li>{{ $pet->name }} - @switch($pet->type)
+                                        @case('dog')
+                                            {{ __('general.dog') }}
+                                        @break
+
+                                        @case('cat')
+                                            {{ __('general.cat') }}
+                                        @break
+
+                                        @case('bird')
+                                            {{ __('general.bird') }}
+                                        @break
+
+                                        @case('ferret')
+                                            {{ __('general.ferret') }}
+                                        @break
+
+                                        @case('rodent')
+                                            {{ __('general.rodent') }}
+                                        @break
+
+                                        @case('bugs')
+                                            {{ __('general.bugs') }}
+                                        @break
+
+                                        @case('reptiles')
+                                            {{ __('general.reptiles') }}
+                                        @break
+
+                                        @case('fish')
+                                            {{ __('general.fish') }}
+                                        @break
+
+                                        @case('farm')
+                                            {{ __('general.farm') }}
+                                        @break
+
+                                        @case('other')
+                                            {{ __('general.other') }}
+                                        @break
+                                    @endswitch
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                @endif
+
+            </div>
+
         </div>
-    @endif
+    </div>
 @endsection

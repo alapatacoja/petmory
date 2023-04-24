@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('type', ['dog', 'cat', 'bird', 'ferret', 'rodent', 'insects/bugs', 'reptiles', 'fish', 'farm', 'other']);
-            $table->date('birthday')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->date('birthdate')->nullable();
+            $table->date('deathdate')->nullable();
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

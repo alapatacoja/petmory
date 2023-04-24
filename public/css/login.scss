@@ -6,6 +6,8 @@ $v1: #74825c;
 $v2: #66754c;
 $v3: #5a6743;
 
+$input-btn-focus-color:         $main;
+
 
 .b-login {
     /* background-color: aquamarine; */
@@ -14,6 +16,7 @@ $v3: #5a6743;
     align-items: center;
     height: 100%;
     padding: 0;
+    margin: 0 2em;
     /*     border: 1px solid $main;
     padding: .5em;
     border-radius: 50px; */
@@ -21,7 +24,7 @@ $v3: #5a6743;
     .info {
         /* background-color: red; */
         /* background-color: red; */
-        width: 60%;
+        width: 50%;
         display: flex;
         text-align: left;
         height: 90%;
@@ -93,9 +96,9 @@ $v3: #5a6743;
 
     .form {
         background-color: $blanco;
-        width: 40%;
+        width: 50%;
         height: 80%;
-        margin-right: .5em;
+        margin-right: .1em;
         
         padding: 2em 1em 2em 2em;
         

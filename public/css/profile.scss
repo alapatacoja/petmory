@@ -1,73 +1,115 @@
+/* colores */
+$blanco: #f6eedb;
+$main: #8e9b6d;
+$v0: #C2C5A4;
+$v1: #74825c;
+$v2: #66754c;
+$v3: #5a6743;
+
 .content {
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    width: 100%;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: .5em;
+    width: 98%;
+    max-height: 85vh;
+    /* margin: 0 1em 1em 1em; */
 }
 
 .scroller {
-    grid-area: 1 / 1 / 3 / 3; 
-    display: grid;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    background-color: blanchedalmond;
+    grid-area: 1 / 1 / 4 / 2;
     overflow-y: scroll;
     overflow-x: hidden;
-    justify-items: center;
-}
 
-.profile {
-    grid-area: 1 / 1 / 2 / 2;
-    background-color: red;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    padding: 1em;
-    height: fit-content;
-    img{
-        grid-area: 1 / 1 / 2 / 2;
-        height: 5em;
-        border-radius: 50%;
-        align-self: center;
+    .profile {
+        border: 1px solid $main;
+        background-color: $blanco;
+        padding: 1em;
+
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pfp {
+            display: flex;
+
+            justify-content: space-around;
+
+            img {
+                height: 7em;
+                margin-right: 2em;
+            }
+        }
+
+        .names {
+
+            height: 7em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            span {
+                font-weight: 600;
+            }
+        }
+
+        .stats {
+            span {
+                margin: 0 1em;
+            }
+        }
+
+        .bottom{
+            margin-top: 1em;
+            display: flex;
+            justify-content: space-between;
+            .buttons{
+                a{
+                    background-color: $main;
+                    padding: .5em 1em;
+                    border-radius: 20px;
+                    margin: 0 .5em;
+                    text-decoration: none;
+                    color: white;
+                }
+            }
+            .bio{
+                width: 70%;
+                word-break: break-word;
+            }
+        }
     }
-    .user{
-        grid-area: 1 / 2 / 2 / 3;
-        align-self: center;
-    }
-    .bio{
-        grid-area: 2 / 1 / 3 / 3;
-    }
-}
 
-.daily {
-    grid-area: 1 / 2 / 2 / 3;
-    background-color: aqua;
-    width: fit-content;
-    img{
-        height: 20em;
-        
+    .links {
+
+        background-color: black;
+    }
+
+    .posts {
+        overflow: initial;
+        /* background-color: red; */
+
     }
 
 }
 
-.p-posts {
-    grid-area: 2 / 1 / 3 / 3;
-    background-color: blueviolet;
-}
 
-.pets {
-    grid-area: 1 / 3 / 2 / 4;
-    background-color: blueviolet
-}
+.sidebar {
+    grid-area: 1 / 2 / 4 / 3;
+    overflow-y: scroll;
 
-.recoms {
-    grid-area: 2 / 3 / 3 / 4;
-    background-color: blueviolet
-}
+    .recoms,
+    .pets {
+        background-color: $main;
+        padding: .5em;
+        margin: .5em;
 
-/* .following {
-    grid-area: 3 / 4 / 4 / 5;
-    background-color: blueviolet
-} */
+        .memorial {
+            font-size: .7em;
+            color: #434343;
+        }
+    }
+}

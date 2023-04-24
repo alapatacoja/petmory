@@ -13,9 +13,4 @@ class Post extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-
-    //mascota asociada al post
-    public function pet(){
-        return $this->belongsTo(Pet::class);
-    }
 }

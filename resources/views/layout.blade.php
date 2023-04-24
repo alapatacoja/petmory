@@ -14,8 +14,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Jost&display=swap" rel="stylesheet">
+    
     {{-- css --}}
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -23,8 +24,8 @@
 
 
         @yield('content')
-    
-    @include('partials/footer')
+   
+    {{-- @include('partials/footer') --}}
 </body>
 
 </html>

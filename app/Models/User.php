@@ -21,7 +21,20 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user',
+        'type',
+        'bio'
     ];
+
+    /**
+     * Get the route key for the model.
+     * 
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -58,13 +71,24 @@ class User extends Authenticatable
     }    
 
     // usuarios a los que sigue
-    public function following() {
-        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
+    public function followings()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followed_id');
     }
 
     // usuarios que lo siguen
     public function followers() {
-        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'follower_id');
     }
 
+    // usuarios a los que recomienda
+    public function recomendations()
+    {
+        return $this->belongsToMany(User::class, 'recommendations', 'recommender_id', 'recommended_id');
+    }
+
+    // usuarios que lo recomiendan
+    public function recommenders() {
+        return $this->belongsToMany(User::class, 'recommendations', 'recommended_id', 'recommender_id');
+    }
 }

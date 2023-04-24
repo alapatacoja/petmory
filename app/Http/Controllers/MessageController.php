@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -12,7 +13,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::orderBy('created_at', 'ASC')->get();
+        return view('home', compact('messages'));
     }
 
     /**
@@ -28,7 +30,16 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->get('text') == null)
+            print_r($request->get('text'));
+        else{
+            $message = new Message();
+            $message->user_id = Auth::user()->id;
+            $message->text = $request->get('text');
+            $message->save();
+            return redirect()->route('home');
+        }
+        
     }
 
     /**

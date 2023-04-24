@@ -14,8 +14,4 @@ class Pet extends Model
         return $this->belongsTo(User::class);
     }
 
-    //posts asociados a la mascota
-    public function posts(){
-        return $this->hasMany(Post::class);
-    }
 }

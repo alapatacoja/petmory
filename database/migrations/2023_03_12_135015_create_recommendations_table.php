@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recommendation', function (Blueprint $table) {
+        Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
-           /*  $table->foreignId('recommender_id')->constrained();
-            $table->foreignId('recommended_id')->constrained();
-            $table->unique(['recommender_id', 'recommended_id'], 'foreign_keys'); */
+            $table->unsignedInteger('recommended_id');
+            $table->unsignedInteger('recommender_id');
             $table->timestamps();
         });
     }

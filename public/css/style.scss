@@ -14,6 +14,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 body {
@@ -21,12 +22,13 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-content: space-around;
+    align-content: flex-start;
     align-items: center;
     justify-content: space-between;
-    overflow-y: scroll;
+    overflow-y: hidden;
     height: fit-content;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 
@@ -102,6 +104,7 @@ header {
             justify-content: space-between;
             list-style: none;
             padding-left: 0;
+            align-items: center;
 
             li:hover .dropdown {
                 display: block;
@@ -154,28 +157,7 @@ header {
 
         }
 
-        .boton {
-            background-color: $v0;
-            padding: .5em 2em;
-            border-radius: 100px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            font-size: .7em;
-        }
-
-        .boton:hover {
-            background-color: #A8B089;
-        }
-
-        #register {
-            background-color: $main;
-            color: white;
-
-        }
-
-        #register:hover {
-            background-color: $v1;
-        }
+        
     }
 
     i {
@@ -194,6 +176,28 @@ header {
 
 }
 
+.boton {
+    background-color: $v0;
+    padding: .5em 2em;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: .7em;
+}
+
+.boton:hover {
+    background-color: #A8B089;
+}
+
+#register {
+    background-color: $main;
+    color: white;
+
+}
+
+#register:hover {
+    background-color: $v1;
+}
 .red {
     color: red;
 }
@@ -216,40 +220,42 @@ footer {
 /* contenido */
 
 .body {
-    text-align: justify;
+    /* text-align: justify; */
     flex: 1 1 auto;
     /* background-color: #66754c; */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 1em;
 
 }
 
 /* inicio */
 
 .posts {
-    /* background-color: #f6eedb; */
     /* padding: 1em; */
     display: flex;
+    grid-area: 1 / 2 / 2 / 3;
+    overflow-y: scroll;
     flex-direction: column;
-    /*     overflow-y: visible;
-    overflow-x: hidden; */
+    overflow-y: visible;
+    overflow-x: hidden;
     align-items: center;
-    margin-left: 20em;
-    margin-right: 1em;
-    padding: 1em .5em;
+    /*     margin-left: 20em;
+    margin-right: 1em; */
+    padding: 1em 0;
+    height: 85vh;
 }
 
 .post {
-    border: 2px solid $main;
     background-color: white;
     width: 95%;
     padding: 1em;
-    display: grid;
+    /* border: 1px solid black; */
     display: grid;
     grid-template-columns: repeat(2);
     grid-template-rows: repeat(2);
-    margin: .5em;
+    margin: .1em 0;
 
     .pfp {
         grid-area: 1 / 1 / 2 / 2;
@@ -289,35 +295,51 @@ footer {
 .post:hover {
     background-color: $blanco;
     cursor: pointer;
-
-    border-radius: 10px;
-    transition:ease-in-out;
+    transition: ease-in-out;
 
 }
 
-.chat {
-    /*     background-color: aquamarine;   
-    width: 60%; */
-    /* position: fixed; */
-    /*     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: space-between;
-    border: 1px solid $main; */
-    /* position: fixed; */
-    position: fixed;
-    top: 4.3em;
-    left: 0;
+/* anuncio */
+
+.cartel{
+    grid-area: 1 / 1 / 2 / 2;
+    height: 87vh;
+    border: 1px solid $main;
     margin-left: 1em;
-    bottom: 2rem;
-    width: 20%;
-    height: 75%;
-    background-color: #f1f1f1;
+    background-image: url('/imgs/background.png'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    span{
+        font-size: 30px;
+    }
+    a{
+        text-decoration: none;
+        border: 1px solid black;
+    }
+    .boton{
+        color: black;
+    }
+}
+
+/* chat */
+
+.chat {
+    grid-area: 1 / 1 / 2 / 2;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    height: 87vh;
     justify-content: space-between;
     border: 1px solid $main;
+    margin-left: 1em;
+
 
     .chat-header {
         background-color: $main;
@@ -364,13 +386,20 @@ footer {
 
     }
 
+    .mensajes-inv {
+        display: flex;
+        flex-direction: column;
+    }
+
     .mensajes {
         background-color: white;
         flex: 1;
         padding-top: .5em;
         overflow-y: scroll;
+        word-break: break-word;
+        display: flex;
+        flex-direction: column-reverse;
 
-        /*  height: 50%; */
         .mensaje,
         .mimensaje,
         .m-user,
@@ -379,6 +408,7 @@ footer {
             padding: .5em 1em;
             border-radius: 10px;
             margin: .2em 1em .5em 1em;
+            max-width: 80%;
 
         }
 
@@ -386,6 +416,9 @@ footer {
             display: flex;
             flex-direction: column;
             font-size: small;
+            .hora{
+                margin-left: 1.4em;
+            }
         }
 
         .mi-user {
@@ -397,18 +430,42 @@ footer {
             font-weight: 600;
             margin-left: .4em;
             padding-bottom: 0;
+            a{
+                text-decoration: none;
+                color: black;
+            }
         }
 
         .mensaje {
             background-color: $v0;
+            
         }
 
         .mimensaje {
             background-color: $blanco;
             align-self: end;
-            text-align: justify;
+            .hora {
+                align-self: end;
+            }
+
         }
+
+        .mimensaje, .mensaje{
+            display: flex;
+            flex-direction: column;
+        }
+
     }
+}
+.mi{
+    margin-right: 1.4em;
+    align-self: end;
+}
+
+.hora {
+    margin-top: 0;
+    color: $v3;
+    font-size: .8em;
 }
 
 /* scrollbar */
@@ -425,11 +482,9 @@ footer {
 
 *::-webkit-scrollbar-track {
     background: #f6eedb;
-    /* padding: .1em; */
 }
 
 *::-webkit-scrollbar-thumb {
-    /*  border: 2px solid $blanco; */
     background-color: #8e9b6d;
 }
 
@@ -439,14 +494,8 @@ footer {
     background: $main;
 }
 
-/*   footer {
-	background-color: #333;
-	color: #fff;
-	padding: 1rem;
-	text-align: center;
-	bottom: 0;
-	left: 0;
-    position: relative;
-    z-index: 500;
-	width: 100%;
-} */
+/* hr */
+hr {
+    width: 100%;
+    background-color: $main;
+}
