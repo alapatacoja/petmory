@@ -15,9 +15,11 @@
   overflow-x: hidden;
 }
 .scroller .profile {
-  border: 1px solid rgb(142, 155, 109);
-  background-color: rgb(246, 238, 219);
+  border: 1px solid #8e9b6d;
+  background-color: #f6eedb;
   padding: 1em;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
 }
 .scroller .profile .top {
   display: flex;
@@ -50,11 +52,14 @@
   justify-content: space-between;
 }
 .scroller .profile .bottom .buttons a {
-  background-color: rgb(142, 155, 109);
+  background-color: #8e9b6d;
   padding: 0.5em 1em;
   border-radius: 20px;
   margin: 0 0.5em;
   text-decoration: none;
+  color: white;
+}
+.scroller .profile .bottom .buttons i {
   color: white;
 }
 .scroller .profile .bottom .bio {
@@ -75,7 +80,7 @@
 }
 .sidebar .recoms,
 .sidebar .pets {
-  background-color: rgb(142, 155, 109);
+  background-color: #8e9b6d;
   padding: 0.5em;
   margin: 0.5em;
 }

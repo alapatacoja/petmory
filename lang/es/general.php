@@ -51,4 +51,5 @@ return [
     'recomendaciones' => 'Recomendaciones',
     'nopets' => 'Este usuario no tiene mascotas actualmente.',
     'norecoms' => 'Este usuario no está recomendando ningún perfil.',
+    'editacc' => 'Edita tu Cuenta',
 ];

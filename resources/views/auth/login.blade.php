@@ -16,10 +16,10 @@
                 </ul>
             @endif
             <div class="col-sm-12">
-                <label for="name" class="form-label"><span class="asteriskField">
+                <label for="username" class="form-label"><span class="asteriskField">
                         *
-                    </span>{{ __('general.nombre') }} </label>
-                <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}"> 
+                    </span>{{ __('general.usuario') }} </label>
+                <input type="text" class="form-control" id="username" name="username" value="{{old('username')}}"> 
             </div>
             <div class="col-sm-12">
                 <label for="password" class="form-label"><span class="asteriskField">

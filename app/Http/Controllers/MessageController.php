@@ -14,7 +14,12 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::orderBy('created_at', 'ASC')->get();
-        return view('home', compact('messages'));
+        if(Auth::check()){
+            $posts = Post::paginate(20);
+        } else {
+            $posts = Post::where('type', 'question')->paginate(20);
+        }
+        return view('home', compact('messages', 'posts'));
     }
 
     /**

@@ -39,7 +39,7 @@ class LoginController extends Controller
         $user->bio = null;
 
         if($request->file('pfp') != null)
-            $request->file('pfp')->storeAs('public/pfp', $user->name.'.png');
+            $request->file('pfp')->storeAs('public/pfp', $user->username.'.png');
 
         $user->save();
 

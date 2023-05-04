@@ -19,7 +19,7 @@
   text-align: left;
   height: 90%;
   flex-direction: column;
-  border-left: 1px solid #66754c;
+  /* border-left: 1px solid $v2; */
   justify-content: space-between;
   /* align-items: center;
 
@@ -72,12 +72,86 @@
   width: 60%;
   align-self: end;
 }
-.b-login .form {
-  background-color: #f6eedb;
+.b-login .caja {
+  /*         box-shadow: 0 10px 20px $blanco; */
   width: 50%;
   height: 80%;
-  margin-right: 0.1em;
-  padding: 2em 1em 2em 2em;
+  margin-right: 1em;
+  padding: 1em 1em 2em 2em;
+  border: 0.3em solid #8e9b6d;
+}
+.b-login .caja h2 {
+  color: #5a6743;
+}
+.b-login .caja .form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.b-login .caja .form .input {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  margin-bottom: 0.5em;
+}
+.b-login .caja .form .full {
+  width: 100%;
+}
+.b-login .caja .form .full input {
+  border: none !important;
+  box-shadow: none !important;
+  height: fit-content !important;
+}
+.b-login .caja .form .input:nth-child(2n) {
+  justify-content: end;
+}
+.b-login .caja .form .input label {
+  width: 95%;
+  margin-bottom: 0.3em;
+}
+.b-login .caja .form .input input,
+.b-login .caja .form select {
+  height: 1.5em;
+  width: 95%;
+  padding: 0.2em 0.3em;
+  border: 1px solid #8e9b6d;
+  outline: none;
+}
+.b-login .caja .form .input input:is(:focus, :valid),
+.b-login .caja .form select:is(:focus, :valid) {
+  box-shadow: 0 2px 0 #C2C5A4;
+}
+.b-login .caja .form input[type=file] {
+  border: 1px solid #8e9b6d;
+}
+.b-login .caja .form input[type=file]::file-selector-button {
+  margin-right: 20px;
+  padding: 0.3em 0.8em;
+  border: none;
+  background: #74825c;
+  color: #fff;
+  cursor: pointer;
+}
+.b-login .caja .form input[type=file]::file-selector-button:hover {
+  background-color: #66754c;
+}
+.b-login .caja .form .alert {
+  font-size: 0.8em;
+}
+.b-login .caja .form .button-subm {
+  width: 100%;
+}
+.b-login .caja .form .button-subm button {
+  width: 40%;
+  padding: 0.5em;
+  background-color: #8e9b6d;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+.b-login .caja .form .button-subm button:hover {
+  background-color: #74825c;
 }
 
 @keyframes escribir {

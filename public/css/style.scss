@@ -1,6 +1,6 @@
 /* colores */
-$blanco: rgb(246, 238, 219);
-$main: rgb(142, 155, 109);
+$blanco: #f6eedb;
+$main: #8e9b6d;
 $v0: #C2C5A4;
 $v1: #74825c;
 $v2: #66754c;
@@ -32,6 +32,7 @@ body {
 }
 
 
+
 /* header */
 header {
     text-transform: capitalize;
@@ -44,7 +45,7 @@ header {
     flex: 0 1 auto;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     border-bottom: 1px solid $main;
     margin-bottom: .5em;
     user-select: none;
@@ -61,119 +62,136 @@ header {
         }
 
         h1 {
-            margin-left: .2em;
-        }
-    }
-
-    .buscar {
-        width: 60%;
-        margin-right: -3em;
-
-        /* background-color: #5a6743; */
-        input {
-            text-transform: capitalize;
-            width: 100%;
-            height: 2em;
-            border: 1px solid black;
-            text-indent: 4em;
-            border-radius: 50px;
-            font-size: 14px;
-
-        }
-
-        span {
-            margin-right: -2.5em;
-            z-index: 200;
-            position: relative;
-        }
-    }
-
-    .nav {
-        position: relative;
-        width: auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 20%;
-
-        /* background-color: aqua; */
-
-        ul {
-            width: 100%;
+            margin-right: .2em;
             display: flex;
-            justify-content: space-between;
-            list-style: none;
-            padding-left: 0;
+            flex-direction: row;
             align-items: center;
+            height: .5em;
 
-            li:hover .dropdown {
-                display: block;
-                /* background-color: rgb(255, 15, 15); */
+            img {
+                height: 2em;
+            }
+        }
+    }
+
+    .resto {
+        flex: 0.8;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .buscar {
+            width: 60%;
+            margin-right: -3em;
+
+            /* background-color: #5a6743; */
+            input {
+                text-transform: capitalize;
+                width: 100%;
+                height: 2em;
+                border: 1px solid black;
+                text-indent: 4em;
+                border-radius: 50px;
+                font-size: 14px;
+
             }
 
-
-            .icon-hover:hover i {
-                background-color: $v0;
+            span {
+                margin-right: -2.5em;
+                z-index: 200;
+                position: relative;
             }
+        }
 
-            .hover:hover {
-                background-color: $v0;
-            }
+        .nav {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 20%;
+            flex: 0.7;
+            /* background-color: aqua; */
 
-            li {
-                display: inline-block;
-                font-size: 1.1em;
+            ul {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                list-style: none;
+                padding-left: 0;
+                align-items: center;
 
-                ul.dropdown {
-                    z-index: 200;
-                    position: absolute;
-                    display: none;
-                    font-size: 14px;
-                    margin-left: -5em;
-                    margin-top: .3em;
-                    width: max-content;
-                    border-radius: 20px;
-                    /* border: 1px solid $main; */
-
-
-                    li {
-                        display: block;
-                        padding: 1em;
-                        background-color: white;
-                        border-top: 1px solid $main;
-                        border-bottom: 1px solid $main;
-                        border-left: 2px solid $main;
-                        border-right: 2px solid $main;
-                    }
-
-                    li:hover {
-                        background-color: $v0;
-
-                    }
-
+                li:hover .dropdown {
+                    display: block;
+                    /* background-color: rgb(255, 15, 15); */
                 }
+
+
+                .icon-hover:hover i {
+                    background-color: $v0;
+                }
+
+                .hover:hover {
+                    background-color: $v0;
+                }
+
+                li {
+                    display: inline-block;
+                    font-size: 1.1em;
+
+                    ul.dropdown {
+                        z-index: 200;
+                        position: absolute;
+                        display: none;
+                        font-size: 14px;
+                        margin-left: -5em;
+                        margin-top: .3em;
+                        width: max-content;
+                        border-radius: 20px;
+                        /* border: 1px solid $main; */
+
+
+                        li {
+                            display: block;
+                            padding: 1em;
+                            background-color: white;
+                            border-top: 1px solid $main;
+                            border-bottom: 1px solid $main;
+                            border-left: 2px solid $main;
+                            border-right: 2px solid $main;
+                        }
+
+                        li:hover {
+                            background-color: $v0;
+
+                        }
+
+                    }
+                }
+
+
             }
 
 
         }
 
-        
-    }
 
-    i {
-        color: black;
-        padding: .3em;
-        border-radius: 50px;
     }
 
 
-    a {
-        text-decoration: none;
-        color: black;
-        cursor: pointer;
-    }
+}
 
 
+i {
+    color: black;
+    padding: .3em;
+    border-radius: 50px;
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 }
 
 .boton {
@@ -198,9 +216,12 @@ header {
 #register:hover {
     background-color: $v1;
 }
+
 .red {
     color: red;
 }
+
+
 
 
 
@@ -224,9 +245,8 @@ footer {
     flex: 1 1 auto;
     /* background-color: #66754c; */
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-rows: 1fr;
-    grid-column-gap: 1em;
 
 }
 
@@ -235,7 +255,7 @@ footer {
 .posts {
     /* padding: 1em; */
     display: flex;
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: 1 / 1 / 2 / 2;
     overflow-y: scroll;
     flex-direction: column;
     overflow-y: visible;
@@ -245,6 +265,7 @@ footer {
     margin-right: 1em; */
     padding: 1em 0;
     height: 85vh;
+    margin-left: .5em;
 }
 
 .post {
@@ -301,12 +322,12 @@ footer {
 
 /* anuncio */
 
-.cartel{
-    grid-area: 1 / 1 / 2 / 2;
+.cartel {
+    grid-area: 1 / 2 / 2 / 3;
     height: 87vh;
     border: 1px solid $main;
-    margin-left: 1em;
-    background-image: url('/imgs/background.png'); 
+    margin: 0 .5em;
+    background-image: url('/imgs/background.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -316,14 +337,17 @@ footer {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    span{
+
+    span {
         font-size: 30px;
     }
-    a{
+
+    a {
         text-decoration: none;
         border: 1px solid black;
     }
-    .boton{
+
+    .boton {
         color: black;
     }
 }
@@ -331,14 +355,14 @@ footer {
 /* chat */
 
 .chat {
-    grid-area: 1 / 1 / 2 / 2;
+    grid-area: 1 / 2 / 2 / 3;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     height: 87vh;
     justify-content: space-between;
     border: 1px solid $main;
-    margin-left: 1em;
+    margin: 0 .5em;
 
 
     .chat-header {
@@ -352,6 +376,7 @@ footer {
 
         i {
             margin-right: .5em;
+            color: white;
         }
     }
 
@@ -416,7 +441,8 @@ footer {
             display: flex;
             flex-direction: column;
             font-size: small;
-            .hora{
+
+            .hora {
                 margin-left: 1.4em;
             }
         }
@@ -430,7 +456,8 @@ footer {
             font-weight: 600;
             margin-left: .4em;
             padding-bottom: 0;
-            a{
+
+            a {
                 text-decoration: none;
                 color: black;
             }
@@ -438,26 +465,29 @@ footer {
 
         .mensaje {
             background-color: $v0;
-            
+
         }
 
         .mimensaje {
             background-color: $blanco;
             align-self: end;
+
             .hora {
                 align-self: end;
             }
 
         }
 
-        .mimensaje, .mensaje{
+        .mimensaje,
+        .mensaje {
             display: flex;
             flex-direction: column;
         }
 
     }
 }
-.mi{
+
+.mi {
     margin-right: 1.4em;
     align-self: end;
 }

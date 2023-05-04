@@ -38,7 +38,7 @@ return [
     'ok' => 'Done',
     /* inicio */
     'escribir' => 'Write a message here',
-    'adv' => 'Not a member? Join Now !!',
+    'adv' => 'Not a member? Join Us Now !',
         /* perfil */
         'follow' => 'Follow',
         'following' => 'Following',
@@ -51,4 +51,5 @@ return [
         'recomendaciones' => 'Recommendations',
         'nopets' => "This user currently doesn't have any pets.",
     'norecoms' => "This user isn't recommending any profile.",
+    'editacc' => 'Edit your Account',
 ];

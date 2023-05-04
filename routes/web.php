@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +21,7 @@ use App\Http\Controllers\MessageController;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('messages.index');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('user', UserController::class);
 
@@ -44,6 +45,8 @@ Route::post('login', [LoginController::class, 'login'])->name(('login'));
 Route::resource('pets', PetController::class);
 
 Route::resource('messages', MessageController::class)->except(['show', 'edit', 'update', 'destroy']);
+
+Route::resource('posts', PostController::class);
 
 /* ----------------------------------------- */
 Route::get('/prueba', function () {

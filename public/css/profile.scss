@@ -26,6 +26,8 @@ $v3: #5a6743;
         border: 1px solid $main;
         background-color: $blanco;
         padding: 1em;
+        margin-right: 1em;
+        margin-bottom: .5em;
 
         .top {
             display: flex;
@@ -62,12 +64,13 @@ $v3: #5a6743;
             }
         }
 
-        .bottom{
+        .bottom {
             margin-top: 1em;
             display: flex;
             justify-content: space-between;
-            .buttons{
-                a{
+
+            .buttons {
+                a {
                     background-color: $main;
                     padding: .5em 1em;
                     border-radius: 20px;
@@ -75,8 +78,13 @@ $v3: #5a6743;
                     text-decoration: none;
                     color: white;
                 }
+
+                i {
+                    color: white;
+                }
             }
-            .bio{
+
+            .bio {
                 width: 70%;
                 word-break: break-word;
             }
@@ -99,7 +107,6 @@ $v3: #5a6743;
 
 .sidebar {
     grid-area: 1 / 2 / 4 / 3;
-    overflow-y: scroll;
 
     .recoms,
     .pets {
