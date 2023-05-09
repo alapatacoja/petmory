@@ -29,10 +29,10 @@ class PetController extends Controller
     {
         $pet = new Pet();
         $pet->name = $request->get('name');
-        $pet->birthdate = $request->get('birth');
         $pet->type = $request->get('type');
         $pet->birthdate = $request->get('birthdate');
         $pet->user_id = Auth::user()->id;
+        $pet->visibility = true;
         $pet->save();
         if(isset($_POST['add']))
             return redirect()->route('pets.create');
@@ -52,7 +52,7 @@ class PetController extends Controller
      */
     public function edit(Pet $pet)
     {
-        //
+        return view('pets.create', compact('pet'));
     }
 
     /**
@@ -60,7 +60,16 @@ class PetController extends Controller
      */
     public function update(Request $request, Pet $pet)
     {
-        //
+        if($request->get('name')!= null)
+        $pet->name = $request->get('name');
+        if($request->get('birthdate')!= null)
+        $pet->birthdate = $request->get('birthdate');
+        if($request->get('deathdate')!= null)
+        $pet->deathdate = $request->get('deathdate');
+        if($request->get('type')!= null)
+        $pet->type = $request->get('type');
+        $pet->save();
+        return redirect()->route('users.edit', Auth::user());
     }
 
     /**
@@ -68,6 +77,17 @@ class PetController extends Controller
      */
     public function destroy(Pet $pet)
     {
-        //
+        $pet->delete();
+
+        return redirect()->route('users.edit', Auth::user());
+    }
+
+    public function visibility(Pet $pet){
+        if($pet->visibility == 1)
+            $pet->visibility = 0;
+        else
+            $pet->visibility = 1;
+        $pet->save();
+        return redirect()->route('user.edit', Auth::user());
     }
 }

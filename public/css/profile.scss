@@ -52,7 +52,9 @@ $v3: #5a6743;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-
+            .admin, .admin i{
+                color: $v1;
+            }
             span {
                 font-weight: 600;
             }
@@ -113,10 +115,46 @@ $v3: #5a6743;
         background-color: $main;
         padding: .5em;
         margin: .5em;
+        text-transform: capitalize;
 
         .memorial {
             font-size: .7em;
             color: #434343;
         }
+    }
+}
+
+/* ajustes */
+.container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    justify-items: center;
+    .editacc{
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    .delacc{
+        grid-area: 1 / 2 / 2 / 3;
+    }
+    .manpets{
+        grid-area: 2 / 1 / 3 / 3;
+        padding: 1em 1em 3em 1em;
+        width: 60%;
+        .flex{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            table, tr, th, td{
+                border: 1px solid $main;
+                padding: 1em;
+                border-collapse: collapse;
+            }
+        }
+        
     }
 }

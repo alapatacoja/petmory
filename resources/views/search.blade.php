@@ -1,8 +1,40 @@
 @extends('layout')
 
 @section('content')
-    <div class="body">
+    <div class="twosides">
+        <div class="users">
+            <h3>Users</h3>
+            @forelse ($users as $user)
+                @if (Auth::check())
+                    <a href="{{ route('user.show', $user) }}">
+                @endif
+                <div class="user">
+                    <div class="pfp">
+                        @if (File::exists(public_path('/storage/pfp/' . $user->username . '.png')))
+                            <img src="/storage/pfp/{{ $user->username }}.png" alt="img">
+                        @else
+                            <img src="/imgs/or.png" alt="img">
+                        @endif
+                    </div>
+                    <div class="p-titles">
+                        <span><b>&#64;{{ $user->username }}</b></span>
+                        @if ($user->type == 'admin')
+                            <br>
+                            <span class="admin">ADMIN<i class="fa-solid fa-shield-heart"></i> </span>
+                        @endif
+                    </div>
+                </div>
+                @if (Auth::check())
+                    </a>
+                @endif
+
+                <hr>
+            @empty
+                <h3>{{ __('general.noposts') }}</h3>
+            @endforelse
+        </div>
         <div class="posts">
+            <h3>Posts</h3>
             @forelse ($posts as $post)
                 @if (Auth::check())
                     <a href="{{ route('showpost', [$post->user, $post]) }}">
@@ -37,8 +69,10 @@
                     <div class="p-txt">
                         {{ $post->text }}
                     </div>
-                    <div class="p-img"> <img src="/storage/postfiles/{{ $post->user->username . '/' . $post->slug }}/0.png"
-                            alt="post image"></div>
+                    <div class="p-img"> <img
+                            src="/storage/postfiles/{{ $post->user->username . '/' . $post->slug }}/0.png"
+                            alt="post image">
+                    </div>
                 </div>
                 @if (Auth::check())
                     </a>
@@ -49,6 +83,7 @@
                     <h3>{{ __('general.noposts') }}</h3>
                 @endforelse
             </div>
-            @include('partials/chat')
+
+
         </div>
     @endsection

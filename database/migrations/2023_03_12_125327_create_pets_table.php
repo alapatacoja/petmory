@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('birthdate')->nullable();
             $table->date('deathdate')->nullable();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->boolean('visibility');
             $table->timestamps();
         });
     }

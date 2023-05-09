@@ -46,7 +46,28 @@ Route::resource('pets', PetController::class);
 
 Route::resource('messages', MessageController::class)->except(['show', 'edit', 'update', 'destroy']);
 
+
+Route::get('{user}/posts/{post}', [PostController::class, 'show'])->name('showpost');
+
+
 Route::resource('posts', PostController::class);
+
+//cambiar la visibilidad de mascotas
+Route::get('visibility/{pet}', [PetController::class, 'visibility'])->name('visibility')->middleware('auth');
+
+//buscar
+Route::get('search', [HomeController::class, 'search'])->name('search');
+
+//follow
+Route::get('follow/{user}', [UserController::class, 'follow'])->name('follow');
+
+//recommend
+Route::get('recommend/{user}', [UserController::class, 'recommend'])->name('recommend');
+
+//idioma
+Route::get('lang/{lang}', [HomeController::class, 'changelang'])->name('changelang');
+
+
 
 /* ----------------------------------------- */
 Route::get('/prueba', function () {

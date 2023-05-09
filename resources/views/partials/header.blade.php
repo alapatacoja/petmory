@@ -7,16 +7,29 @@
     </div>
     <div class="resto">
         <div class="buscar">
-            <span class="fa fa-search"></span>
-            <input type="text" placeholder="{{ __('general.buscar') }}">
+            
+            <form action="{{route('search')}}" method="get">
+            @csrf
+                <span class="fa fa-search"></span>
+                <input type="text" placeholder="{{ __('general.buscar') }}" name="search" id="search">
+            </form>
 
         </div>
         <div class="nav">
+{{--             @if ( Config::get('app.locale') == 'en')
+
+   {{ App::setLocale('es') }}
+
+   @elseif ( Config::get('app.locale') == 'es' )
+
+   {{ App::setLocale('en') }}
+
+   @endif --}}
             <ul>
-                <li><i class="fa-solid fa-language"></i></li>
+                <li><a href="{{route('changelang', 'es')}}"><i class="fa-solid fa-language"></i></a></li>
                 @if (Auth::check())
-                    <li class="icon-hover"><a href=""><i class="fa-solid fa-circle-plus"></i>
-                            {{ __('general.post') }}</a></li>
+                    <li class="icon-hover"><a href="{{ route('posts.create') }}"><i class="fa-solid fa-circle-plus"></i>
+                            {{ __('general.topost') }}</a></li>
                     <div class="drop-acc">
                         <li class="icon-hover"><a href="{{ route('users.show', Auth::user()) }}"><i
                                     class="fa-solid fa-circle-user" id="drop"></i>{{ __('general.account') }}</a>
@@ -27,7 +40,8 @@
                                         href="{{ route('users.show', Auth::user()) }}"><i class="fa-solid fa-user"></i>
                                         {{ __('general.account') }}</a></li>
 
-                                <li><a href=""><i class="fa-solid fa-gear"></i> {{ __('general.settings') }}</a>
+                                <li><a href="{{ route('user.edit', Auth::user()) }}"><i class="fa-solid fa-gear"></i>
+                                        {{ __('general.settings') }}</a>
                                 </li>
 
                                 <li style="border-radius:  0 0 20px 20px"><a href="{{ route('logout') }}"><i

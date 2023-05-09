@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -19,23 +22,45 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $post = new Post();
+        $post->title = $request->get('title');
+        
+        $post->slug = Str::slug($post->title);
+        $aux = Post::where('slug', '=', $post->slug)->get();
+        if(count($aux)>0)
+            $post->slug =  $post->slug.'-'.count($aux);
+        $post->text = $request->get('text');
+        $post->type = $request->get('type');
+        $post->user_id = Auth::user()->id;
+        $files = $request->file('photo');
+
+        if($request->hasFile('photo'))
+        {
+            $num = 0;
+            foreach ($files as $file) {
+                $file->storeAs('/public/postfiles/' . Auth::user()->username . '/' . $post->slug . '/' . $num . '.png');
+                $num++;
+            }
+        }
+        $post->save();
+        return redirect()->route('showpost', ['user'=>Auth::user(), 'post'=>$post]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(User $user, Post $post)
     {
-        //
+
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -49,7 +74,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         //
     }
@@ -59,6 +84,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Storage::delete('public/postfiles', $user->username.'.png');
     }
 }
