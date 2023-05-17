@@ -6,8 +6,6 @@ $v1: #74825c;
 $v2: #66754c;
 $v3: #5a6743;
 
-$input-btn-focus-color: $main;
-
 
 .b-login {
     /* background-color: aquamarine; */
@@ -17,6 +15,7 @@ $input-btn-focus-color: $main;
     height: 100%;
     padding: 0;
     margin: 0 2em;
+    width: 95%;
     /*     border: 1px solid $main;
     padding: .5em;
     border-radius: 50px; */
@@ -106,94 +105,135 @@ $input-btn-focus-color: $main;
             color: $v3;
         }
 
-        .form {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
 
-            .input {
-                display: flex;
-                flex-wrap: wrap;
-                width: 50%;
-                margin-bottom: .5em;
-            }
+    }
 
-            .full {
-                width: 100%;
+}
 
-                input {
-                    border: none !important;
-                    box-shadow: none !important;
-                    height: fit-content !important;
-                }
-            }
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-            .input:nth-child(2n) {
-                justify-content: end;
-            }
+    .input {
+        display: flex;
+        flex-wrap: wrap;
+        width: 50%;
+        margin-bottom: .5em;
 
-            .input label {
-                width: 95%;
-                margin-bottom: .3em;
-            }
+        select {
+            outline: none;
+            height: fit-content;
 
-            .input input,
-            select {
-                height: 1.5em;
-                width: 95%;
-                padding: 0.2em .3em;
-                border: 1px solid $main;
-                outline: none;
-            }
 
-            .input input:is(:focus, :valid),
-            select:is(:focus, :valid) {
-                box-shadow: 0 2px 0 $v0;
-            }
+        }
 
-            input[type=file] {
-                border: 1px solid $main;
-            }
+        option:hover {
+            background-color: #198754;
+            color: #fff;
+        }
 
-            input[type=file]::file-selector-button {
-                margin-right: 20px;
-                padding: .3em .8em;
-                border: none;
-                background: $v1;
-                color: #fff;
-                cursor: pointer;
 
-            }
+    }
 
-            input[type=file]::file-selector-button:hover {
-                background-color: $v2;
+    .full {
+        width: 100%;
 
-            }
-
-            .alert {
-                font-size: .8em;
-            }
-
-            .button-subm {
-                width: 100%;
-
-                button {
-                    width: 40%;
-                    padding: .5em;
-                    background-color: $main;
-                    border: none;
-                    border-radius: 10px;
-                    color: white;
-                    cursor: pointer;
-                }
-
-                button:hover {
-                    background-color: $v1;
-                }
-            }
+        input {
+            border: none !important;
+            box-shadow: none !important;
+            height: fit-content !important;
         }
     }
 
+    .input:nth-child(2n) {
+        justify-content: end;
+    }
+
+    .input label {
+        width: 95%;
+        margin-bottom: .3em;
+    }
+
+    .input input,
+    select {
+        height: 1.5em;
+        width: 95%;
+        padding: 0.2em .3em;
+        border: 1px solid $main;
+        outline: none;
+    }
+
+    .input input:is(:focus, :valid),
+    select:is(:focus, :valid) {
+        box-shadow: 0 2px 0 $v0;
+    }
+
+    input[type=file] {
+        border: 1px solid $main;
+    }
+
+    input[type=file]::file-selector-button {
+        margin-right: 20px;
+        padding: .3em .8em;
+        border: none;
+        background: $v1;
+        color: #fff;
+        cursor: pointer;
+
+    }
+
+    input[type=file]::file-selector-button:hover {
+        background-color: $v2;
+
+    }
+
+    .alert {
+        font-size: .8em;
+    }
+
+    .buttons{
+        display: flex;
+    }
+    .button-subm {
+        width: 100%;
+
+        button {
+            width: 10em;
+            padding: .5em;
+            background-color: $main;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: $v1;
+        }
+    }
+}
+
+/* createpet */
+
+.createpet{
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form{
+        padding: 1em 1em 2em 2em;
+        border: .3em solid $main;
+
+        h2 {
+            color: $v3;
+        }
+        .input{
+            width: 100%;
+            flex-wrap: nowrap;
+        }
+    }
 }
 
 @keyframes escribir {
@@ -218,3 +258,31 @@ $input-btn-focus-color: $main;
     }
 }
 
+.login{
+    min-height: 20em;
+    display: flex;
+    flex-direction: column;
+
+    .login-form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    form{
+        flex: 1;
+        display: flex;
+        width: 100%;
+        
+    }
+}
+
+.green{
+    color: $v3;
+    text-decoration: underline;
+}
+
+.small{
+    font-size: small;
+}

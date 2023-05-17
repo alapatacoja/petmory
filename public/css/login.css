@@ -7,6 +7,7 @@
   height: 100%;
   padding: 0;
   margin: 0 2em;
+  width: 95%;
   /*     border: 1px solid $main;
   padding: .5em;
   border-radius: 50px; */
@@ -83,48 +84,57 @@
 .b-login .caja h2 {
   color: #5a6743;
 }
-.b-login .caja .form {
+
+.form {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.b-login .caja .form .input {
+.form .input {
   display: flex;
   flex-wrap: wrap;
   width: 50%;
   margin-bottom: 0.5em;
 }
-.b-login .caja .form .full {
+.form .input select {
+  outline: none;
+  height: fit-content;
+}
+.form .input option:hover {
+  background-color: #198754;
+  color: #fff;
+}
+.form .full {
   width: 100%;
 }
-.b-login .caja .form .full input {
+.form .full input {
   border: none !important;
   box-shadow: none !important;
   height: fit-content !important;
 }
-.b-login .caja .form .input:nth-child(2n) {
+.form .input:nth-child(2n) {
   justify-content: end;
 }
-.b-login .caja .form .input label {
+.form .input label {
   width: 95%;
   margin-bottom: 0.3em;
 }
-.b-login .caja .form .input input,
-.b-login .caja .form select {
+.form .input input,
+.form select {
   height: 1.5em;
   width: 95%;
   padding: 0.2em 0.3em;
   border: 1px solid #8e9b6d;
   outline: none;
 }
-.b-login .caja .form .input input:is(:focus, :valid),
-.b-login .caja .form select:is(:focus, :valid) {
+.form .input input:is(:focus, :valid),
+.form select:is(:focus, :valid) {
   box-shadow: 0 2px 0 #C2C5A4;
 }
-.b-login .caja .form input[type=file] {
+.form input[type=file] {
   border: 1px solid #8e9b6d;
 }
-.b-login .caja .form input[type=file]::file-selector-button {
+.form input[type=file]::file-selector-button {
   margin-right: 20px;
   padding: 0.3em 0.8em;
   border: none;
@@ -132,17 +142,20 @@
   color: #fff;
   cursor: pointer;
 }
-.b-login .caja .form input[type=file]::file-selector-button:hover {
+.form input[type=file]::file-selector-button:hover {
   background-color: #66754c;
 }
-.b-login .caja .form .alert {
+.form .alert {
   font-size: 0.8em;
 }
-.b-login .caja .form .button-subm {
+.form .buttons {
+  display: flex;
+}
+.form .button-subm {
   width: 100%;
 }
-.b-login .caja .form .button-subm button {
-  width: 40%;
+.form .button-subm button {
+  width: 10em;
   padding: 0.5em;
   background-color: #8e9b6d;
   border: none;
@@ -150,8 +163,28 @@
   color: white;
   cursor: pointer;
 }
-.b-login .caja .form .button-subm button:hover {
+.form .button-subm button:hover {
   background-color: #74825c;
+}
+
+/* createpet */
+.createpet {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.createpet .form {
+  padding: 1em 1em 2em 2em;
+  border: 0.3em solid #8e9b6d;
+}
+.createpet .form h2 {
+  color: #5a6743;
+}
+.createpet .form .input {
+  width: 100%;
+  flex-wrap: nowrap;
 }
 
 @keyframes escribir {
@@ -166,6 +199,31 @@
   100% {
     top: -3em;
   }
+}
+.login {
+  min-height: 20em;
+  display: flex;
+  flex-direction: column;
+}
+.login .login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+.login form {
+  flex: 1;
+  display: flex;
+  width: 100%;
+}
+
+.green {
+  color: #5a6743;
+  text-decoration: underline;
+}
+
+.small {
+  font-size: small;
 }
 
 /*# sourceMappingURL=login.css.map */

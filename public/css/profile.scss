@@ -13,7 +13,8 @@ $v3: #5a6743;
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: .5em;
     width: 98%;
-    max-height: 85vh;
+    min-height: 80vh;
+    max-height: 90vh;
     /* margin: 0 1em 1em 1em; */
 }
 
@@ -52,9 +53,12 @@ $v3: #5a6743;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-            .admin, .admin i{
+
+            .admin,
+            .admin i {
                 color: $v1;
             }
+
             span {
                 font-weight: 600;
             }
@@ -70,15 +74,21 @@ $v3: #5a6743;
             margin-top: 1em;
             display: flex;
             justify-content: space-between;
+            align-content: center;
 
             .buttons {
-                a {
+                display: flex;
+
+                a,
+                form input {
                     background-color: $main;
                     padding: .5em 1em;
                     border-radius: 20px;
                     margin: 0 .5em;
                     text-decoration: none;
                     color: white;
+                    height: fit-content;
+                    border: none;
                 }
 
                 i {
@@ -87,16 +97,13 @@ $v3: #5a6743;
             }
 
             .bio {
-                width: 70%;
+                flex: 1;
+                max-width: 65%;
                 word-break: break-word;
             }
         }
     }
 
-    .links {
-
-        background-color: black;
-    }
 
     .posts {
         overflow: initial;
@@ -104,6 +111,12 @@ $v3: #5a6743;
 
     }
 
+}
+
+.red {
+    background-color: rgb(181, 43, 43) !important;
+    height: 100% !important;
+    cursor: pointer !important;
 }
 
 
@@ -131,30 +144,103 @@ $v3: #5a6743;
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     align-items: center;
     justify-items: center;
-    .editacc{
+
+    .editacc {
         grid-area: 1 / 1 / 2 / 2;
+        width: 70%;
+        height: 80%;
+        padding: 1em 1em 2em 2em;
+
+        h3 {
+            color: $v3;
+        }
+
+        .form .input textarea {
+            width: 100%;
+            height: 2em;
+        }
     }
-    .delacc{
+
+    .delacc {
         grid-area: 1 / 2 / 2 / 3;
+
+        .button {
+            background-color: $main;
+            padding: .5em 1em;
+            border-radius: 20px;
+            margin: 0 .5em;
+            text-decoration: none;
+            color: white;
+            height: fit-content;
+            border: none;
+        }
     }
-    .manpets{
+
+    .manpets {
         grid-area: 2 / 1 / 3 / 3;
         padding: 1em 1em 3em 1em;
         width: 60%;
-        .flex{
+
+        h3 {
+            color: $v3;
+        }
+
+        .flex {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             justify-content: space-evenly;
-            table, tr, th, td{
+
+            table,
+            tr,
+            th,
+            td {
+                text-align: center;
                 border: 1px solid $main;
                 padding: 1em;
                 border-collapse: collapse;
+
+                button {
+                    background-color: white;
+                    border: none;
+                }
             }
         }
-        
+
+        .form{
+            display: flex;
+        }
+
+    }
+
+    .links {
+        grid-area: 3 / 1 / 4 / 3;
+    }
+}
+
+
+.imgs {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+
+    img {
+        width: calc(95%/3);
+        margin: 0 .5em;
+        border: .5px solid $main;
+        margin-bottom: .5em;
+    }
+
+    img:hover {
+        transform: scale(110%);
+        transition: .3s ease-in-out;
     }
 }

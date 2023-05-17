@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -39,6 +41,8 @@ class PostController extends Controller
             $post->slug =  $post->slug.'-'.count($aux);
         $post->text = $request->get('text');
         $post->type = $request->get('type');
+        if(Auth::user()->type == 'group' && $request->get('type')=='daily')
+            $post->type == 'post';
         $post->user_id = Auth::user()->id;
         $files = $request->file('photo');
 
@@ -59,8 +63,8 @@ class PostController extends Controller
      */
     public function show(User $user, Post $post)
     {
-
-        return view('posts.show', compact('post'));
+        $comments = Comment::where('post_id', '=', $post->id)->get();
+        return view('posts.show', compact('post', 'comments'));
     }
 
     /**
@@ -84,6 +88,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Storage::delete('public/postfiles', $user->username.'.png');
+        File::deleteDirectory(storage_path('app/public/postfiles/'. $post->user->username.'/'.$post->slug.'/'));
+        $post->delete();
+        return redirect()->route('home');
     }
 }

@@ -1,4 +1,5 @@
-<!-- return [
-    'en' => 'English',
-    'es' => 'Español',
-]; -->
+<?php
+return [
+'en' => 'English',
+'es' => 'Español',
+];

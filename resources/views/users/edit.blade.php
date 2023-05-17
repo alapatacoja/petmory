@@ -2,14 +2,15 @@
 
 @section('content')
     <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/login.css">
     <div class="container">
         <div class="editacc">
-            <form class="row g-3" action="{{ route('user.update', Auth::user()) }}" method="post"
+            <form class="form" action="{{ route('user.update', Auth::user()) }}" method="post"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <h3> {{ __('general.editacc') }} </h3>
-
+                
                 <div class="input">
                     <label for="name" class="form-label">{{ __('general.nombre') }} </label>
                     <input type="text" class="form-control" id="name" name="name"
@@ -38,11 +39,11 @@
                     <input type="file" class="form-control" id="pfp" aria-describedby="inputGroupFileAddon04"
                         aria-label="Upload" name="pfp">
                 </div>
-                <div class="input">
+                <div class="input full">
                     <label for="bio" class="form-label">{{ __('general.bio') }}</label>
                     <textarea name="bio" id="bio" cols="30" rows="10">{{ Auth::user()->bio }}</textarea>
                 </div>
-                <div class="col-4">
+                <div class="button-subm">
                     <button type="submit" class="btn btn-primary">{{ __('general.cont') }}</button>
                 </div>
             </form>
@@ -51,14 +52,15 @@
         <div class="delacc">
             <h3>{{ __('general.deleteacc') }}</h3>
             <p>{{ __('general.nodeshacer') }}</p>
-            <div class="boton">
+
                 <form action="{{ route('user.destroy', Auth::user()) }}" method="POST">
                     @csrf
                     @method('delete')
-                    <input type="submit" value="{{ __('general.delete') }}">
+                    <input type="submit" value="{{ __('general.delete') }}" class="red button">
                 </form>
-            </div>
+
         </div>
+        @if (Auth::user()->type != 'group')
         <div class="manpets">
             <h3>{{ __('general.editpets') }}</h3>
             <div class="flex">
@@ -138,6 +140,33 @@
                 </div>
             </div>
         </div>
+        @endif
+        
+          @if (Auth::user()->type == 'group')
+              <div class="manpets">
+                <h3>{{__('general.addlink')}}</h3>
+                <form action="{{route('addlinks')}}" method="post" enctype="multipart/form-data" class="form">
+                @csrf
+                
+                
+                <div class="input">
+                    <label for="link">{{__('general.url')}}</label>
+                    <input type="text" name="link" id="link">
+                
+                </div>
+                <div class="input full">
+                    <label for="pic">{{__('general.addpics')}}</label>
+                    <input type="file" name="photo[]" id="photo" multiple>
+                
+                </div>
+                <div class="button-subm">
+                    <input type="submit" value="{{ __('general.ok') }}" name="ok">
+                </div>
 
+                
+            </form>
+                
+              </div>
+          @endif
     </div>
 @endsection

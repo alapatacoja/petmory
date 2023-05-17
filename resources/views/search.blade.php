@@ -3,7 +3,7 @@
 @section('content')
     <div class="twosides">
         <div class="users">
-            <h3>Users</h3>
+            <h3>{{__('general.users')}}</h3>
             @forelse ($users as $user)
                 @if (Auth::check())
                     <a href="{{ route('user.show', $user) }}">
@@ -17,11 +17,11 @@
                         @endif
                     </div>
                     <div class="p-titles">
+                        <span>@if ($user->type == 'admin')
+                            <span class="admin"><i class="fa-solid fa-shield-heart"></i></span>
+                        @endif{{$user->name}}</span><br>
                         <span><b>&#64;{{ $user->username }}</b></span>
-                        @if ($user->type == 'admin')
-                            <br>
-                            <span class="admin">ADMIN<i class="fa-solid fa-shield-heart"></i> </span>
-                        @endif
+                        
                     </div>
                 </div>
                 @if (Auth::check())
@@ -30,11 +30,11 @@
 
                 <hr>
             @empty
-                <h3>{{ __('general.noposts') }}</h3>
+                <h3>{{ __('general.nousers') }}</h3>
             @endforelse
         </div>
         <div class="posts">
-            <h3>Posts</h3>
+            <h3>{{__('general.posts')}}</h3>
             @forelse ($posts as $post)
                 @if (Auth::check())
                     <a href="{{ route('showpost', [$post->user, $post]) }}">

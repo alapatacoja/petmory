@@ -71,4 +71,21 @@ return [
     'postdesc' => 'Permanent post to save your most beautiiful memories with your pets.',
     'daily' => 'Daily Post',
     'dailydesc' => 'Just the daily activities of your little ones. These posts disappear after 24h.',
+    /* search */
+    'nousers' => 'No users found.',
+    'editpet' => 'Edit pet',
+    'deathdate' => 'Death date',
+    'unfollow' => 'Unfollow',
+    'unrecommend' =>  'Stop recommending',
+    'addlink' => 'Add a link to your website',
+    'website' => 'Website',
+    'url' => 'URL',
+    'addpics' => 'Add some pictures',
+    'leavecomment' => 'Leave a comment',
+    'comment' => 'Comment',
+    'comments' => 'Comments',
+    'cuenta' => 'Have an account?', 
+    'registrate' => 'Sign up',
+    'nocuenta' => "Don't have an account?",
+    'inicia' => 'Log in'
 ];

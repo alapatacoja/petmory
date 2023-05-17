@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'user',
         'type',
-        'bio'
+        'bio',
+        'url'
     ];
 
     /**
@@ -58,6 +59,10 @@ class User extends Authenticatable
     //mascotas del usuario
     public function pets(){
         return $this->hasMany(Pet::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 
     //mensajes del usuario

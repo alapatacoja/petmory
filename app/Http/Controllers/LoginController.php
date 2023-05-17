@@ -17,9 +17,9 @@ class LoginController extends Controller
      */
     public function registerForm()
     {
-/*         if(Auth::check())
+        if(Auth::check())
             return redirect()->route('home');
-        else */
+        else
             return view('auth.register');
     }
 /**
@@ -37,7 +37,7 @@ class LoginController extends Controller
         $user->password = Hash::make($request->get('password'));
         $user->type = $request->get('type');
         $user->bio = null;
-
+        $user->url = null;
         if($request->file('pfp') != null)
             $request->file('pfp')->storeAs('public/pfp', $user->username.'.png');
 
@@ -45,7 +45,10 @@ class LoginController extends Controller
 
         Auth::login(($user));
 
-        return redirect()->route('pets.create');
+        if($user->type == 'group')
+            return redirect()->route('user.show');
+        else 
+            return redirect()->route('pets.create');
     }
  
     public function logout(Request $request)
@@ -67,7 +70,7 @@ class LoginController extends Controller
             return 'welcome back !';
         } else
             if (Auth::check())
-            return redirect()->route('users.show', Auth::user()->username);
+            return redirect()->route('home');
         else
             return view('auth.login');
     }
@@ -84,7 +87,7 @@ class LoginController extends Controller
         $recordar = request()->remember ? true : false;
         if (Auth::guard('web')->attempt($credenciales, $recordar)) {
             $request->session()->regenerate();
-            return redirect()->route('users.show', Auth::user()->username);
+            return redirect()->route('home');
         } else {
             $error = 'Error';
             return view('auth.login', compact('error'));

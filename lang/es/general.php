@@ -72,4 +72,21 @@ return [
         'postdesc' => 'Publicación permanente para guardar los recuerdos más bonitos con tus mascotas.',
         'daily' => 'Publicación diaria',
         'dailydesc' => 'Las actividades diarias de tus animalitos. Estas publicaciones desaparecerán después de 24 horas.',
-];
+        /* search */
+        'nousers' => 'No se encontraron usuarios.',
+        'editpet' => 'Editar mascota',
+        'deathdate' => 'Fecha de defunción',
+        'unfollow' => 'Dejar de Seguir',
+        'unrecommend' =>  'Dejar de Recomendar',
+        'addlink' => 'Añade un enlace a tu página web',
+        'website' => 'Página Web',
+        'url' => 'URL',
+        'addpics' => 'Añade imágenes',
+        'leavecomment' => 'Deja un comentario',
+        'comment' => 'Comentar',
+        'comments' => 'Comentarios',
+        'cuenta' => '¿Ya tienes cuenta?', 
+        'registrate' => 'Regístrate',
+        'nocuenta' => "¿No tienes cuenta?",
+        'inicia' => 'Inicia sesión'
+    ];

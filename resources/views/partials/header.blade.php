@@ -7,26 +7,32 @@
     </div>
     <div class="resto">
         <div class="buscar">
-            
-            <form action="{{route('search')}}" method="get">
-            @csrf
+
+            <form action="{{ route('search') }}" method="get">
+                @csrf
                 <span class="fa fa-search"></span>
                 <input type="text" placeholder="{{ __('general.buscar') }}" name="search" id="search">
             </form>
 
         </div>
         <div class="nav">
-{{--             @if ( Config::get('app.locale') == 'en')
-
-   {{ App::setLocale('es') }}
-
-   @elseif ( Config::get('app.locale') == 'es' )
-
-   {{ App::setLocale('en') }}
-
-   @endif --}}
             <ul>
-                <li><a href="{{route('changelang', 'es')}}"><i class="fa-solid fa-language"></i></a></li>
+                <li class="idioma"><a
+                        href="@if (Config::get('languages')[App::getLocale()] == 'Español') {{ route('changelang', 'en') }}
+                @else
+                {{ route('changelang', 'es') }} @endif"><i
+                            class="fa-solid fa-language"></i>
+                        @if (Config::get('languages')[App::getLocale()] == 'Español')
+                            ES
+                        @else
+                            EN
+                            @endif
+                    </a>
+
+                    {{-- @foreach (Config::get('languages') as $lang => $language)
+                            <a href="{{route('changelang', $lang)}}">{{$language}}</a>                 
+                    @endforeach --}}
+                </li>
                 @if (Auth::check())
                     <li class="icon-hover"><a href="{{ route('posts.create') }}"><i class="fa-solid fa-circle-plus"></i>
                             {{ __('general.topost') }}</a></li>
@@ -61,3 +67,4 @@
         </div>
     </div>
 </header>
+{{-- {{Config::get('languages')[App::getLocale()]}} --}}

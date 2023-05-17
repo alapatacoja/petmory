@@ -19,7 +19,8 @@ class MessageController extends Controller
         } else {
             $posts = Post::where('type', 'question')->paginate(20);
         }
-        return view('home', compact('messages', 'posts'));
+       /*  return view('home', compact('messages', 'posts')); */
+       return response()->json($messages);
     }
 
     /**
@@ -43,6 +44,7 @@ class MessageController extends Controller
             $message->text = $request->get('text');
             $message->save();
             return redirect()->route('home');
+            /* return response()->json($message); */
         }
         
     }
@@ -78,4 +80,19 @@ class MessageController extends Controller
     {
         //
     }
+
+    /* public function fetch()
+    {
+        $messages = Message::orderBy('created_at', 'ASC')->get();
+        return response()->json($messages);
+    }
+
+    public function send(Request $request)
+    {
+        $message = Message::create([
+            'content' => $request->input('message'),
+            'user_id' => auth()->user()->id,
+        ]);
+        return response()->json($message);
+    } */
 }

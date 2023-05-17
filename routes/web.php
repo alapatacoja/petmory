@@ -8,7 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,10 +64,14 @@ Route::get('follow/{user}', [UserController::class, 'follow'])->name('follow');
 //recommend
 Route::get('recommend/{user}', [UserController::class, 'recommend'])->name('recommend');
 
+//comments
+Route::post('comment/{post}', [CommentController::class, 'store'])->name('comments.store');
+
 //idioma
 Route::get('lang/{lang}', [HomeController::class, 'changelang'])->name('changelang');
 
-
+//añadir enlaces
+Route::post('addlinks', [UserController::class, 'addlinks'])->name('addlinks');
 
 /* ----------------------------------------- */
 Route::get('/prueba', function () {

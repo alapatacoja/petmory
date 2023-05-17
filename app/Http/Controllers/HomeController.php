@@ -8,12 +8,17 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-        public function index()
+    public function index(Request $request)
     {
         $messages = Message::orderBy('created_at', 'ASC')->get();
+        if($request->ajax()){
+            return response()->json(array('messages'=>$messages));
+        }
         if(Auth::check()){
             $posts = Post::where('type', 'question')->orwherein('user_id', Auth::user()->followings->pluck('id'))->orwhere('user_id', '=', Auth::user()->id)->paginate(20);
         } else {
@@ -28,5 +33,13 @@ class HomeController extends Controller
         /* print_r($users); */
 
         return view('search', compact('posts', 'users'));
+    }
+
+    public function changelang($lang){
+        if(array_key_exists($lang, Config::get('languages'))){
+            Session::put('applocale', $lang);
+
+        }
+        return redirect()->back();
     }
 }

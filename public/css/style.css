@@ -199,6 +199,7 @@ footer {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 1fr;
+  width: 100%;
 }
 
 /* inicio */
@@ -255,7 +256,8 @@ footer {
 .post .p-txt {
   grid-area: 2/1/3/2;
   text-align: justify;
-  width: 90%;
+  width: 100%;
+  max-height: 6em;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -265,7 +267,7 @@ footer {
   width: 20em;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 .post .p-img img {
@@ -437,6 +439,7 @@ footer {
 
 *::-webkit-scrollbar {
   width: 7px;
+  height: 7px;
 }
 
 *::-webkit-scrollbar-track {
@@ -516,6 +519,21 @@ hr {
 }
 .twosides .user:hover {
   background-color: #f6eedb;
+}
+
+/* post view */
+.showpost {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr;
+  width: 100%;
+  flex: 1;
+}
+.showpost .postview {
+  grid-area: 1/1/2/2;
+}
+.showpost .comments {
+  grid-area: 2/1/3/2;
 }
 
 /*# sourceMappingURL=style.css.map */
