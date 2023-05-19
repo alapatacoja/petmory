@@ -65,8 +65,7 @@
                     @endif
                 <div class="input full">
                     <label for="pfp" class="form-label">{{ __('general.pfp') }}</label>
-                    <input type="file" class="form-control" id="pfp" aria-describedby="inputGroupFileAddon04"
-                        aria-label="Upload" name="pfp">
+                    <input type="file" class="form-control" id="pfp" accept="image/*" name="pfp" >
                 </div>
                 <div class="alert">
                     <p>{{ __('general.group-alert') }}</p>

@@ -1,7 +1,7 @@
 /* colores */
 .content {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 3fr 1fr;
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0.5em;
   width: 98%;
@@ -17,7 +17,7 @@
 }
 .scroller .profile {
   border: 1px solid #8e9b6d;
-  background-color: #f6eedb;
+  background-color: #d9dcc1;
   padding: 1em;
   margin-right: 1em;
   margin-bottom: 0.5em;
@@ -33,6 +33,7 @@
 }
 .scroller .profile .pfp img {
   height: 7em;
+  width: 7em;
   margin-right: 2em;
 }
 .scroller .profile .names {
@@ -92,18 +93,42 @@
 
 .sidebar {
   grid-area: 1/2/4/3;
+  overflow: scroll;
 }
 .sidebar .recoms,
 .sidebar .pets {
-  background-color: #8e9b6d;
+  border: 2px solid #8e9b6d;
+  /* background-color: $main; */
   padding: 0.5em;
   margin: 0.5em;
   text-transform: capitalize;
+}
+.sidebar .recoms .pet,
+.sidebar .pets .pet {
+  display: flex;
+  align-items: center;
+  margin: 0.5em 0;
+  padding: 0.3em;
+}
+.sidebar .recoms .pet img,
+.sidebar .pets .pet img {
+  height: 3em;
+  width: 3em;
+  border-radius: 100%;
+  margin-right: 0.5em;
 }
 .sidebar .recoms .memorial,
 .sidebar .pets .memorial {
   font-size: 0.7em;
   color: #434343;
+}
+.sidebar .recoms .memorialpic,
+.sidebar .pets .memorialpic {
+  filter: grayscale(100%);
+}
+.sidebar .recoms .pet:hover,
+.sidebar .pets .pet:hover {
+  background-color: #C2C5A4;
 }
 
 /* ajustes */

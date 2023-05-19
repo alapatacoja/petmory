@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+
     <div class="body">
         <div class="posts">
             @forelse ($posts as $post)

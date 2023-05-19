@@ -10,12 +10,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+use DB;
 
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $messages = Message::orderBy('created_at', 'ASC')->get();
+        $messages = DB::table('messages')->select('messages.text', 'messages.created_at', 'users.username', 'messages.user_id')->join('users', 'users.id', '=', 'messages.user_id')->get();
+        
+        $mess = Message::orderBy('created_at', 'ASC')->get();
+        
         if($request->ajax()){
             return response()->json(array('messages'=>$messages));
         }
@@ -24,13 +28,18 @@ class HomeController extends Controller
         } else {
             $posts = Post::where('type', 'question')->paginate(20);
         }
-        return view('home', compact('messages', 'posts'));
+
+        $delposts = Post::where('type', 'daily')->where('created_at', '<=', now()->subDay())->get();
+        foreach($delposts as $delpost){
+            $delpost->delete();
+        }
+
+        return view('home', compact('mess', 'posts'));
     }
 
     public function search(Request $request){
         $posts = Post::where('title', 'like', '%'.$request->get('search').'%')->orderBy('created_at', 'desc')->get();
         $users = User::where('username', 'like', '%'.$request->get('search').'%')->orwhere('name', 'like', '%'.$request->get('search').'%')->get();
-        /* print_r($users); */
 
         return view('search', compact('posts', 'users'));
     }

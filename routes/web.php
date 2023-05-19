@@ -73,6 +73,9 @@ Route::get('lang/{lang}', [HomeController::class, 'changelang'])->name('changela
 //añadir enlaces
 Route::post('addlinks', [UserController::class, 'addlinks'])->name('addlinks');
 
+//eliminar posts diarios antiguos
+Route::get('delposts', [HomeController::class, 'delposts'])->name('delposts');
+
 /* ----------------------------------------- */
 Route::get('/prueba', function () {
     

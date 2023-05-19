@@ -36,8 +36,8 @@
                 </div>
                 <div class="input full">
                     <label for="pfp" class="form-label">{{ __('general.pfp') }}</label>
-                    <input type="file" class="form-control" id="pfp" aria-describedby="inputGroupFileAddon04"
-                        aria-label="Upload" name="pfp">
+                    <input type="file" class="form-control" id="pfp" 
+                        aria-label="Upload" name="pfp" accept="image/*">
                 </div>
                 <div class="input full">
                     <label for="bio" class="form-label">{{ __('general.bio') }}</label>

@@ -74,6 +74,8 @@ return [
         'dailydesc' => 'Las actividades diarias de tus animalitos. Estas publicaciones desaparecerán después de 24 horas.',
         /* search */
         'nousers' => 'No se encontraron usuarios.',
+        'users' => 'Usuarios',
+        'posts' => 'Publicaciones',
         'editpet' => 'Editar mascota',
         'deathdate' => 'Fecha de defunción',
         'unfollow' => 'Dejar de Seguir',

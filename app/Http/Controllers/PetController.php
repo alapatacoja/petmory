@@ -19,7 +19,10 @@ class PetController extends Controller
      */
     public function create()
     {
-        return view('pets.create');
+        if(Auth::check() && Auth::user()->type != 'group')
+            return view('pets.create');
+        else 
+            return redirect()->route('home');
     }
 
     /**
@@ -33,6 +36,10 @@ class PetController extends Controller
         $pet->birthdate = $request->get('birthdate');
         $pet->user_id = Auth::user()->id;
         $pet->visibility = true;
+
+        if($request->hasFile('petpic'))
+            $request->file('petpic')->storeAs('/public/petpics/' . Auth::user()->username . '/' . $pet->name . '.png');         
+
         $pet->save();
         if(isset($_POST['add']))
             return redirect()->route('pets.create');
@@ -52,7 +59,11 @@ class PetController extends Controller
      */
     public function edit(Pet $pet)
     {
-        return view('pets.create', compact('pet'));
+        if(Auth::check() && Auth::user()->type != 'group')
+            return view('pets.create', compact('pet'));
+        else 
+            return redirect()->route('home');
+        
     }
 
     /**

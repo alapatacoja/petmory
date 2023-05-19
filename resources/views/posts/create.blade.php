@@ -11,13 +11,19 @@
         @endif
         <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <h3>{{ __('general.makepost') }}</h3>
-            <label for="title">{{ __('general.title') }}</label>
-            <input type="text" name="title" id="title">
-            <textarea name="text" id="text" cols="30" rows="10" placeholder="{{ __('general.text') }}"></textarea>
-            <label for="photo">{{ __('general.addpics') }}</label>
-            <input type="file" name="photo[]" id="photo" multiple>
-            <fieldset>
+            <h3 id="title">{{ __('general.makepost') }}</h3>
+            <div class="input p-title">
+                <label for="title">{{ __('general.title') }}</label>
+                <input type="text" name="title" id="title">
+            </div>
+            <div class="input text">
+                <textarea name="text" id="text" cols="30" rows="10" placeholder="{{ __('general.text') }}"></textarea>
+            </div>
+            <div class="input full pics">
+                <label for="photo">{{ __('general.addpics') }}</label>
+                <input type="file" name="photo[]" id="photo" multiple accept="image/*">
+            </div>
+            <fieldset class="types">
                 <h3>{{ __('general.type') }}</h3>
                 <input type="radio" name="type" id="daily" value="daily">
                 <label for="daily"><i class="fa-regular fa-clock"></i><b>{{ __('general.daily') }}</b>
@@ -28,14 +34,14 @@
                     <p>{{ __('general.postdesc') }}</p>
                 </label>
                 @if (Auth::user()->type != 'group')
-                <input type="radio" name="type" id="question" value="question">
-                <label for="question"><i class="fa-solid fa-question"></i><b>{{ __('general.question') }}</b>
-                    <p>{{ __('general.questiondesc') }}</p>
-                </label>
+                    <input type="radio" name="type" id="question" value="question">
+                    <label for="question"><i class="fa-solid fa-question"></i><b>{{ __('general.question') }}</b>
+                        <p>{{ __('general.questiondesc') }}</p>
+                    </label>
                 @endif
 
             </fieldset>
-            <input type="submit" value="{{ __('general.ok') }}">
+            <input type="submit" value="{{ __('general.ok') }}" class="button">
 
         </form>
     </div>

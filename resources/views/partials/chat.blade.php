@@ -6,7 +6,7 @@
         </div>
         <div class="mensajes" id="mensajes">
              <div class="mensajes-inv" id="mensajes-inv">
-                {{-- @foreach ($messages as $message)
+                @foreach ($mess as $message)
                     @if ($message->user_id == Auth::user()->id)
                         <div class="message">
                             <span class="mi-user"><a
@@ -27,13 +27,13 @@
                             <span class="hora">{{ substr($message->created_at, 11, 5) }}</span>
                         </div>
                     @endif
-                @endforeach --}}
+                @endforeach
             </div>
         </div>
         <div class="chat-input">
             <form action="{{ route('messages.store') }}" method="post" id="message-form">
                 @csrf
-                <input type="text" placeholder="{{ __('general.escribir') }}" name="text" id="text">
+                <input type="text" placeholder="{{ __('general.escribir') }}" name="text" id="text" autocomplete="off">
                 <button type="submit"><i class="fa-solid fa-chevron-right"></i></button>
             </form>
         </div>
@@ -61,11 +61,11 @@
                     if (response.messages.length > 0) {
                         var messages = '';
                         for (var i = 0; i < response.messages.length; i++) {
-
+                            console.log(response.messages);
                             if(response.messages[i]['user_id']=={{Auth::user()->id}}){
-                                messages += '<div class="message"><span class="mi-user"></span><div class="mimensaje"><span class="m-txt">'+response.messages[i]['text']+'</span></div><span class="mi hora">uwu</span></div>';
+                                messages += '<div class="message"><span class="mi-user">'+response.messages[i]['username']+'</span><div class="mimensaje"><span class="m-txt">'+response.messages[i]['text']+'</span></div><span class="mi hora">'+response.messages[i]['created_at'].substring(11,16)+'</span></div>';
                             } else {
-                                messages+= '<div class="message"><span class="user"></span><div class="mensaje"><span class="m-txt">'+response.messages[i]['text']+'</span></div><span class="hora">uwu</span></div>';;
+                                messages+= '<div class="message"><span class="m-user">'+response.messages[i]['username']+'</span><div class="mensaje"><span class="m-txt">'+response.messages[i]['text']+'</span></div><span class="hora">'+response.messages[i]['created_at'].substring(11,16)+'</span></div>';;
                             }
 
                         }

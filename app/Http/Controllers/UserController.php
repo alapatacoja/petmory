@@ -38,16 +38,20 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        if($user->type == 'group'){
-            if(File::isDirectory(storage_path('app/public/groupfiles/'. $user->username))){
-                $files = File::allfiles(storage_path('app/public/groupfiles/'. $user->username));
-            } else {
-                $files = null;
+        if(Auth::check()){
+            if($user->type == 'group'){
+                if(File::isDirectory(storage_path('app/public/groupfiles/'. $user->username))){
+                    $files = File::allfiles(storage_path('app/public/groupfiles/'. $user->username));
+                } else {
+                    $files = null;
+                }
+                return view('users.show', compact('user', 'files'));
             }
-            return view('users.show', compact('user', 'files'));
+                
+            return view('users.show', compact('user'));
+        } else {
+            return redirect()->route('home');
         }
-            
-        return view('users.show', compact('user'));
         
     }
 
@@ -56,7 +60,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit');
+        if(Auth::check() && Auth::user()==$user)
+            return view('users.edit');
+        else return redirect()->route('home');
     }
 
     /**

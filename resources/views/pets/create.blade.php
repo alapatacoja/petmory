@@ -9,7 +9,7 @@
                 action="@if (isset($pet)) {{ route('pets.update', $pet) }}
     @else
         {{ route('pets.store') }} @endif"
-                method="POST">
+                method="POST" enctype="multipart/form-data">
                 @if (isset($pet))
                     <h2>{{ __('general.editpet') }}</h2>
                     @method('PUT')
@@ -47,7 +47,7 @@
                         </option>
                         <option value="rodent"@if (isset($pet) && $pet->type == 'rodent') selected @endif>{{ __('general.rodent') }}
                         </option>
-                        <option value="bugs" @if (isset($pet) && $pet->type == 'insect/bugs') selected @endif>{{ __('general.bugs') }}
+                        <option value="insects/bugs" @if (isset($pet) && $pet->type == 'insects/bugs') selected @endif>{{ __('general.bugs') }}
                         </option>
                         <option value="reptiles" @if (isset($pet) && $pet->type == 'reptiles') selected @endif>
                             {{ __('general.reptiles') }}</option>
@@ -64,6 +64,12 @@
                     <input type="date" name="birthdate" id="birthdate"
                         @if (isset($pet)) value="{{ $pet->birthdate }}" @endif>
                 </div>
+
+                <div class="input">
+                    <label for="petpic">{{ __('general.petpic') }}</label>
+                    <input type="file" name="petpic" id="petpic" accept="image/*">
+                </div>
+
                 @if (isset($pet))
                     <div class="input"><label for="deathdate">
                             {{ __('general.deathdate') }}</label>
@@ -73,7 +79,7 @@
                 @else
                     <div class="buttons">
                         <div class="button-subm">
-                            <button type="submit" value="{{ __('general.add') }}">{{ __('general.add') }}</button>
+                            <button type="submit" value="{{ __('general.add') }}" name="add" id="add">{{ __('general.add') }}</button>
                         </div>
                 @endif
 

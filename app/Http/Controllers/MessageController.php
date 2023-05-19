@@ -80,19 +80,4 @@ class MessageController extends Controller
     {
         //
     }
-
-    /* public function fetch()
-    {
-        $messages = Message::orderBy('created_at', 'ASC')->get();
-        return response()->json($messages);
-    }
-
-    public function send(Request $request)
-    {
-        $message = Message::create([
-            'content' => $request->input('message'),
-            'user_id' => auth()->user()->id,
-        ]);
-        return response()->json($message);
-    } */
 }

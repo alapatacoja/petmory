@@ -24,7 +24,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        if(Auth::check())
+            return view('posts.create');
+        else 
+            return redirect()->route('home');
+        
     }
 
     /**
@@ -63,8 +67,13 @@ class PostController extends Controller
      */
     public function show(User $user, Post $post)
     {
-        $comments = Comment::where('post_id', '=', $post->id)->get();
-        return view('posts.show', compact('post', 'comments'));
+        if(Auth::check()){
+            $comments = Comment::where('post_id', '=', $post->id)->get();
+            return view('posts.show', compact('post', 'comments'));
+        }
+        else 
+            return redirect()->route('home');
+        
     }
 
     /**

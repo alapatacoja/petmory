@@ -46,7 +46,7 @@ class LoginController extends Controller
         Auth::login(($user));
 
         if($user->type == 'group')
-            return redirect()->route('user.show');
+            return redirect()->route('user.show', Auth::user());
         else 
             return redirect()->route('pets.create');
     }

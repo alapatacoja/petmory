@@ -6,10 +6,11 @@ $v1: #74825c;
 $v2: #66754c;
 $v3: #5a6743;
 
+
 .content {
 
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: .5em;
     width: 98%;
@@ -25,7 +26,7 @@ $v3: #5a6743;
 
     .profile {
         border: 1px solid $main;
-        background-color: $blanco;
+        background-color: $v00;
         padding: 1em;
         margin-right: 1em;
         margin-bottom: .5em;
@@ -43,6 +44,7 @@ $v3: #5a6743;
 
             img {
                 height: 7em;
+                width: 7em;
                 margin-right: 2em;
             }
         }
@@ -122,19 +124,43 @@ $v3: #5a6743;
 
 .sidebar {
     grid-area: 1 / 2 / 4 / 3;
+    overflow: scroll;
 
     .recoms,
     .pets {
-        background-color: $main;
+        border: 2px solid $main;
+        /* background-color: $main; */
         padding: .5em;
         margin: .5em;
         text-transform: capitalize;
+        
+        .pet{
+            display: flex;
+            align-items: center;
+            margin: .5em 0;
+            padding: .3em;
+            img{
+                height: 3em;
+                width: 3em;
+                border-radius: 100%;
+                margin-right: .5em;
+            }
+        }
 
         .memorial {
             font-size: .7em;
             color: #434343;
         }
+
+        .memorialpic{
+            filter: grayscale(100%);
+        }
+
+        .pet:hover{
+            background-color: $v0;
+        }
     }
+
 }
 
 /* ajustes */
@@ -210,7 +236,7 @@ $v3: #5a6743;
             }
         }
 
-        .form{
+        .form {
             display: flex;
         }
 

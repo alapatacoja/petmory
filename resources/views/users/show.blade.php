@@ -86,7 +86,7 @@
         @if ($user->type == 'group')
             @if ($user->url != null)
                 <div class="links">
-                    <h3><a href="{{ $user->url }}">{{__('general.website')}}</a></h3>
+                    <h3><a href="{{ $user->url }}">{{ __('general.website') }}</a></h3>
                     <?php $num = 0; ?>
                     @if ($files != null)
                         <div class="imgs">
@@ -154,12 +154,16 @@
                 @if (count($user->recomendations) == 0)
                     {{ __('general.norecoms') }}
                 @else
-                    <ul>
-                        @foreach ($user->recomendations as $recom)
-                            <li><a href="{{ route('user.show', $recom) }}">&#64;{{ $recom->username }}</a></li>
-                        @endforeach
-
-                    </ul>
+                    @foreach ($user->recomendations as $recom)
+                    <a href="{{ route('user.show', $recom) }}"><div class="pet">
+                                @if (File::exists(public_path('/storage/pfp/' . $recom->username . '.png')))
+                                    <img src="/storage/pfp/{{ $recom->username }}.png" alt="img">
+                                @else
+                                    <img src="/imgs/or.png" alt="img">
+                                @endif
+                                &#64;{{ $recom->username }}
+                            </div></a>
+                    @endforeach
                 @endif
             </div>
             @if ($user->type != 'group')
@@ -168,14 +172,16 @@
                     @if (count($user->pets) == 0)
                         {{ __('general.nopets') }}
                     @else
-                        <ul>
-                            <?php $visibles = 0; ?>
-                            @foreach ($user->pets as $pet)
-                                @if ($pet->visibility)
-                                    <?php $visibles++; ?>
-
+                        <?php $visibles = 0; ?>
+                        @foreach ($user->pets as $pet)
+                            @if ($pet->visibility)
+                                <?php $visibles++; ?>
+                                <div class="pet">
                                     @if ($pet->deathdate != null)
-                                        <li><i class="fa-solid fa-ribbon"></i> {{ $pet->name }} - @switch($pet->type)
+                                        <img class="memorialpic"
+                                            src="/storage/petpics/{{ $user->username . '/' . $pet->name }}.png"
+                                            alt=""><span><i class="fa-solid fa-ribbon"></i> {{ $pet->name }} -
+                                            @switch($pet->type)
                                                 @case('dog')
                                                     {{ __('general.dog') }}
                                                 @break
@@ -196,7 +202,7 @@
                                                     {{ __('general.rodent') }}
                                                 @break
 
-                                                @case('bugs')
+                                                @case('insects/bugs')
                                                     {{ __('general.bugs') }}
                                                 @break
 
@@ -215,7 +221,7 @@
                                                 @case('other')
                                                     {{ __('general.other') }}
                                                 @break
-                                            @endswitch <br> <span class="memorial"> (
+                                            @endswitch <br><span class="memorial"> (
                                                 @if ($pet->birthdate == null)
                                                     ??
                                                 @else
@@ -225,60 +231,61 @@
                                                     @else
                                                         {{ date('d/m/Y', strtotime($pet->deathdate)) }}
                                                     @endif )
-                                            </span></li>
-                                    @else
-                                        <li>{{ $pet->name }} - @switch($pet->type)
-                                                @case('dog')
-                                                    {{ __('general.dog') }}
-                                                @break
+                                            </span></span>
+                                </div>
+                            @else
+                                <img src="/storage/petpics/{{ $user->username . '/' . $pet->name }}.png"
+                                    alt="">{{ $pet->name }} - @switch($pet->type)
+                                    @case('dog')
+                                        {{ __('general.dog') }}
+                                    @break
 
-                                                @case('cat')
-                                                    {{ __('general.cat') }}
-                                                @break
+                                    @case('cat')
+                                        {{ __('general.cat') }}
+                                    @break
 
-                                                @case('bird')
-                                                    {{ __('general.bird') }}
-                                                @break
+                                    @case('bird')
+                                        {{ __('general.bird') }}
+                                    @break
 
-                                                @case('ferret')
-                                                    {{ __('general.ferret') }}
-                                                @break
+                                    @case('ferret')
+                                        {{ __('general.ferret') }}
+                                    @break
 
-                                                @case('rodent')
-                                                    {{ __('general.rodent') }}
-                                                @break
+                                    @case('rodent')
+                                        {{ __('general.rodent') }}
+                                    @break
 
-                                                @case('bugs')
-                                                    {{ __('general.bugs') }}
-                                                @break
+                                    @case('insects/bugs')
+                                        {{ __('general.bugs') }}
+                                    @break
 
-                                                @case('reptiles')
-                                                    {{ __('general.reptiles') }}
-                                                @break
+                                    @case('reptiles')
+                                        {{ __('general.reptiles') }}
+                                    @break
 
-                                                @case('fish')
-                                                    {{ __('general.fish') }}
-                                                @break
+                                    @case('fish')
+                                        {{ __('general.fish') }}
+                                    @break
 
-                                                @case('farm')
-                                                    {{ __('general.farm') }}
-                                                @break
+                                    @case('farm')
+                                        {{ __('general.farm') }}
+                                    @break
 
-                                                @case('other')
-                                                    {{ __('general.other') }}
-                                                @break
-                                            @endswitch
-                                        </li>
-                                    @endif
-                                @endif
-                            @endforeach
-                        </ul>
-                    @endif
-                    @if ($visibles == 0)
-                        {{ __('general.nopets') }}
-                    @endif
+                                    @case('other')
+                                        {{ __('general.other') }}
+                                    @break
+                                @endswitch
                 </div>
             @endif
+            @endif
+            @endforeach
+            @endif
+            @if ($visibles == 0)
+                {{ __('general.nopets') }}
+            @endif
+        </div>
+        @endif
         </div>
         </div>
     @endsection

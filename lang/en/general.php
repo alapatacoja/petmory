@@ -87,5 +87,7 @@ return [
     'cuenta' => 'Have an account?', 
     'registrate' => 'Sign up',
     'nocuenta' => "Don't have an account?",
-    'inicia' => 'Log in'
+    'inicia' => 'Log in',
+    'users' => 'Users',
+    'posts' => 'Posts',
 ];
