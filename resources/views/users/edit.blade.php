@@ -5,27 +5,37 @@
     <link rel="stylesheet" href="/css/login.css">
     <div class="container">
         <div class="editacc">
+            <h3> {{ __('general.editacc') }} </h3>
             <form class="form" action="{{ route('user.update', Auth::user()) }}" method="post"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <h3> {{ __('general.editacc') }} </h3>
+                
                 
                 <div class="input">
                     <label for="name" class="form-label">{{ __('general.nombre') }} </label>
                     <input type="text" class="form-control" id="name" name="name"
                         value="{{ Auth::user()->name }}">
                 </div>
+                @if ($errors->has('name'))
+                    <span class="red small">{{ $errors->first('name') }}</span>
+                @endif
                 <div class="input">
                     <label for="user" class="form-label">{{ __('general.usuario') }}</label>
                     <input type="text" class="form-control" id="username" name="username"
                         value="{{ Auth::user()->username }}">
                 </div>
+                @if ($errors->has('username'))
+                    <span class="red small">{{ $errors->first('username') }}</span>
+                @endif
                 <div class="input">
                     <label for="email" class="form-label">{{ __('general.email') }}</label>
                     <input type="email" class="form-control" id="email" name="email"
                         value="{{ Auth::user()->email }}">
                 </div>
+                @if ($errors->has('email'))
+                    <span class="red small">{{ $errors->first('email') }}</span>
+                @endif
                 <div class="input">
                     <label for="password" class="form-label">{{ __('general.pass') }}</label>
                     <input type="password" class="form-control" id="password" name="password">
@@ -34,20 +44,28 @@
                     <label for="password_confirmation" class="form-label">{{ __('general.pass_val') }}</label>
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                 </div>
+                @if ($errors->has('password'))
+                    <span class="red small">{{ $errors->first('password') }}</span>
+                @endif
                 <div class="input full">
                     <label for="pfp" class="form-label">{{ __('general.pfp') }}</label>
                     <input type="file" class="form-control" id="pfp" 
                         aria-label="Upload" name="pfp" accept="image/*">
                 </div>
+                @if ($errors->has('pfp'))
+                    <span class="red small">{{ $errors->first('pfp') }}</span>
+                @endif
                 <div class="input full">
                     <label for="bio" class="form-label">{{ __('general.bio') }}</label>
                     <textarea name="bio" id="bio" cols="30" rows="10">{{ Auth::user()->bio }}</textarea>
                 </div>
+                @if ($errors->has('bio'))
+                    <span class="red small">{{ $errors->first('bio') }}</span>
+                @endif
                 <div class="button-subm">
                     <button type="submit" class="btn btn-primary">{{ __('general.cont') }}</button>
                 </div>
             </form>
-
         </div>
         <div class="delacc">
             <h3>{{ __('general.deleteacc') }}</h3>
@@ -96,7 +114,7 @@
                                         {{ __('general.rodent') }}
                                     @break
 
-                                    @case('bugs')
+                                    @case('insects/bugs')
                                         {{ __('general.bugs') }}
                                     @break
 
@@ -156,11 +174,11 @@
                 </div>
                 <div class="input full">
                     <label for="pic">{{__('general.addpics')}}</label>
-                    <input type="file" name="photo[]" id="photo" multiple>
+                    <input type="file" name="photo[]" id="photo" multiple accept="image/*">
                 
                 </div>
                 <div class="button-subm">
-                    <input type="submit" value="{{ __('general.ok') }}" name="ok">
+                    <button type="submit" >{{ __('general.addd') }}</button>
                 </div>
 
                 

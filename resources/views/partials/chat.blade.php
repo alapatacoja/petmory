@@ -9,8 +9,7 @@
                 @foreach ($mess as $message)
                     @if ($message->user_id == Auth::user()->id)
                         <div class="message">
-                            <span class="mi-user"><a
-                                    href="{{ route('user.show', $message->user) }}">{{ $message->user->username }}</a></span>
+                            <span class="mi-user"><a href="{{ route('user.show', $message->user) }}">{{ $message->user->username }}</a></span>
                             <div class="mimensaje">
                                 <span class="m-txt">{{ $message->text }}</span>
                             </div>
@@ -18,8 +17,7 @@
                         </div>
                     @else
                         <div class="message">
-                            <span class="m-user"><a
-                                    href="{{ route('user.show', $message->user) }}">{{ $message->user->username }}</a></span>
+                            <span class="m-user"><a href="{{ route('user.show', $message->user) }}">{{ $message->user->username }}</a></span>
                             <div class="mensaje">
                                 <span class="m-txt">{{ $message->text }}</span>
 
@@ -63,9 +61,9 @@
                         for (var i = 0; i < response.messages.length; i++) {
                             console.log(response.messages);
                             if(response.messages[i]['user_id']=={{Auth::user()->id}}){
-                                messages += '<div class="message"><span class="mi-user">'+response.messages[i]['username']+'</span><div class="mimensaje"><span class="m-txt">'+response.messages[i]['text']+'</span></div><span class="mi hora">'+response.messages[i]['created_at'].substring(11,16)+'</span></div>';
+                                messages += '<div class="message"><span class="mi-user"><a href="/users/'+response.messages[i]['username']+'">'+response.messages[i]['username']+'</a></span><div class="mimensaje"><span class="m-txt">'+response.messages[i]['text']+'</span></div><span class="mi hora">'+response.messages[i]['created_at'].substring(11,16)+'</span></div>';
                             } else {
-                                messages+= '<div class="message"><span class="m-user">'+response.messages[i]['username']+'</span><div class="mensaje"><span class="m-txt">'+response.messages[i]['text']+'</span></div><span class="hora">'+response.messages[i]['created_at'].substring(11,16)+'</span></div>';;
+                                messages+= '<div class="message"><span class="m-user"><a href="/users/'+response.messages[i]['username']+'">'+response.messages[i]['username']+'</a></span><div class="mensaje"><span class="m-txt">'+response.messages[i]['text']+'</span></div><span class="hora">'+response.messages[i]['created_at'].substring(11,16)+'</span></div>';;
                             }
 
                         }
@@ -80,4 +78,6 @@
         }, 1000);
     });
 </script>
+
+
 @endif

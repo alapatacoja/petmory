@@ -12,6 +12,9 @@
   padding: .5em;
   border-radius: 50px; */
 }
+.b-login .input:nth-child(2n) {
+  justify-content: end;
+}
 .b-login .info {
   /* background-color: red; */
   /* background-color: red; */
@@ -91,50 +94,56 @@
   justify-content: space-between;
 }
 .form .input {
+  width: 50%;
+}
+
+.input {
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
   margin-bottom: 0.5em;
 }
-.form .input select {
+.input select {
   outline: none;
   height: fit-content;
 }
-.form .input option:hover {
+.input option:hover {
   background-color: #198754;
   color: #fff;
 }
-.form .full {
+
+.full {
   width: 100%;
 }
-.form .full input {
+.full input {
   border: none !important;
   box-shadow: none !important;
   height: fit-content !important;
 }
-.form .input:nth-child(2n) {
-  justify-content: end;
-}
-.form .input label {
+
+.input label {
   width: 95%;
   margin-bottom: 0.3em;
 }
-.form .input input,
-.form select {
+
+.input input,
+select, textarea {
   height: 1.5em;
   width: 95%;
   padding: 0.2em 0.3em;
   border: 1px solid #8e9b6d;
   outline: none;
 }
-.form .input input:is(:focus, :valid),
-.form select:is(:focus, :valid) {
+
+.input input:is(:focus, :valid),
+select:is(:focus, :valid), textarea:is(:focus, :valid) {
   box-shadow: 0 2px 0 #C2C5A4;
 }
-.form input[type=file] {
+
+input[type=file] {
   border: 1px solid #8e9b6d;
 }
-.form input[type=file]::file-selector-button {
+
+input[type=file]::file-selector-button {
   margin-right: 20px;
   padding: 0.3em 0.8em;
   border: none;
@@ -142,19 +151,23 @@
   color: #fff;
   cursor: pointer;
 }
-.form input[type=file]::file-selector-button:hover {
+
+input[type=file]::file-selector-button:hover {
   background-color: #66754c;
 }
-.form .alert {
+
+.alert {
   font-size: 0.8em;
 }
-.form .buttons {
+
+.buttons {
   display: flex;
 }
-.form .button-subm {
+
+.button-subm {
   width: 100%;
 }
-.form .button-subm button {
+.button-subm button {
   width: 10em;
   padding: 0.5em;
   background-color: #8e9b6d;
@@ -163,7 +176,7 @@
   color: white;
   cursor: pointer;
 }
-.form .button-subm button:hover {
+.button-subm button:hover {
   background-color: #74825c;
 }
 
@@ -178,6 +191,18 @@
 .createpet .form {
   padding: 1em 1em 2em 2em;
   border: 0.3em solid #8e9b6d;
+}
+.createpet .form .buttons {
+  display: flex;
+  margin-top: 1em;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.createpet .form .buttons .button-subm {
+  width: fit-content;
+}
+.createpet .form input[type=file] {
+  border: none;
 }
 .createpet .form h2 {
   color: #5a6743;
@@ -224,6 +249,11 @@
 
 .small {
   font-size: small;
+  margin-bottom: 1em;
+}
+
+textarea {
+  resize: none;
 }
 
 /*# sourceMappingURL=login.css.map */

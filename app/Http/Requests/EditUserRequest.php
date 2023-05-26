@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules;
 
-class PostRequest extends FormRequest
+class EditUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +23,11 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:5'],
-            'type' => 'required|in:post,question,daily' ,
-            'photo' => [ 'nullable'],
-            'text' => 'required'
+            'name' => ['nullable', 'alpha_num', 'min:2', 'max:20'],
+            'username' => ['nullable', 'alpha_num', 'min:5', 'max:50'],
+            'email' => ['nullable', 'string', 'min:2', 'max:255'],
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'pfp' => ['image', 'nullable']
         ];
     }
 }

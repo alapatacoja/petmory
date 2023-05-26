@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->text('text');
             $table->enum('type', ['question', 'post', 'daily']);
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

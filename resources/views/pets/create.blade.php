@@ -14,23 +14,25 @@
                     <h2>{{ __('general.editpet') }}</h2>
                     @method('PUT')
                 @else
-                    <h2>{{ __('general.addpet') }}</h2>
+                    <h2 style="margin-bottom: 0">{{ __('general.addpet') }}</h2>
                 @endif
                 @csrf
-                @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                @if (isset($message))
+                    <h5 style="margin: 0; margin-bottom: 1em">{{__('general.saved')}}</h5>
+                   
                 @endif
+               
                 <div class="input">
                     <label for="name"><span class="red">
                             *
                         </span>{{ __('general.nombre') }} </label>
                     <input type="text" class="form-control" id="name" name="name"
-                        @if (isset($pet)) value="{{ $pet->name }}" @endif>
+                    
+                        @if (isset($pet)) value="{{ $pet->name }}" @endif >
                 </div>
+                @if ($errors->has('name'))
+                    <span class="red small">{{$errors->first('name')}}</span>
+                    @endif
                 <div class="input">
                     <label for="type"><span class="red">
                             *
@@ -55,27 +57,39 @@
                         </option>
                         <option value="farm" @if (isset($pet) && $pet->type == 'farm') selected @endif>{{ __('general.farm') }}
                         </option>
-                        <option value="others" @if (isset($pet) && $pet->type == 'others') selected @endif>
+                        <option value="other" @if (isset($pet) && $pet->type == 'others') selected @endif>
                             {{ __('general.others') }}</option>
                     </select>
                 </div>
+                @if ($errors->has('type'))
+                    <span class="red small">{{$errors->first('type')}}</span>
+                    @endif
                 <div class="input">
                     <label for="birthdate">{{ __('general.birthdate') }}</label>
-                    <input type="date" name="birthdate" id="birthdate"
+                    <input type="date" name="birthdate" id="birthdate" value="{{old('birthdate')}}"
                         @if (isset($pet)) value="{{ $pet->birthdate }}" @endif>
                 </div>
-
+                @if ($errors->has('birthdate'))
+                <span class="red small">{{$errors->first('birthdate')}}</span>
+                @endif
                 <div class="input">
-                    <label for="petpic">{{ __('general.petpic') }}</label>
+                    <label for="petpic"><span class="red">
+                        *
+                    </span>{{ __('general.petpic') }}</label>
                     <input type="file" name="petpic" id="petpic" accept="image/*">
                 </div>
-
+                @if ($errors->has('petpic'))
+                <span class="red small">{{$errors->first('petpic')}}</span>
+                @endif
                 @if (isset($pet))
                     <div class="input"><label for="deathdate">
                             {{ __('general.deathdate') }}</label>
-                        <input type="date" name="deathdate" id="deathdate"
+                        <input type="date" name="deathdate" id="deathdate" value="{{old('deathdate')}}"
                             @if (isset($pet)) value="{{ $pet->deathdate }}" @endif>
                     </div>
+                    @if ($errors->has('deathdate'))
+                    <span class="red small">{{$errors->first('deathdate')}}</span>
+                    @endif
                 @else
                     <div class="buttons">
                         <div class="button-subm">

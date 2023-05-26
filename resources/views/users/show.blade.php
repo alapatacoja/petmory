@@ -1,14 +1,18 @@
 @extends('layout')
 
 @section('content')
+    <div id="fullimg">
+        <img id="full">
+        <span id="close" onclick="closeimg()"><i class="fa-solid fa-xmark"></i></span>
+    </div>
     <link rel="stylesheet" href="/css/profile.css">
     <div class="content">
         <div class="scroller">
             <div class="profile">
                 <div class="top">
                     <div class="pfp">
-                        @if (File::exists(public_path('/storage/pfp/' . $user->username . '.png')))
-                            <img src="/storage/pfp/{{ $user->username }}.png" alt="img">
+                        @if (File::exists(public_path('/storage/pfp/' . $user->id . '.png')))
+                            <img src="/storage/pfp/{{ $user->id }}.png" alt="img">
                         @else
                             <img src="/imgs/or.png" alt="img">
                         @endif
@@ -86,13 +90,17 @@
         @if ($user->type == 'group')
             @if ($user->url != null)
                 <div class="links">
-                    <h3><a href="{{ $user->url }}">{{ __('general.website') }}</a></h3>
+                    <h3><a href="{{ $user->url }}">
+                            {{ __('general.website') }}</a></h3>
                     <?php $num = 0; ?>
                     @if ($files != null)
                         <div class="imgs">
                             @foreach ($files as $file)
-                                <img src="/storage/groupfiles/{{ $user->username }}/{{ $num }}.png"
-                                    alt="">
+                                <div class="pic">
+                                    <img onclick="full(this.src)"
+                                        src="/storage/groupfiles/{{ $user->id }}/{{ $num }}.png"
+                                        alt="">
+                                </div>
                                 <?php $num++; ?>
                             @endforeach
                         </div>
@@ -106,8 +114,8 @@
                 <a href="{{ route('showpost', [$user, $post]) }}">
                     <div class="post">
                         <div class="pfp">
-                            @if (File::exists(public_path('/storage/pfp/' . $post->user->username . '.png')))
-                                <img src="/storage/pfp/{{ $post->user->username }}.png" alt="img">
+                            @if (File::exists(public_path('/storage/pfp/' . $post->user->id . '.png')))
+                                <img src="/storage/pfp/{{ $post->user->id }}.png" alt="img">
                             @else
                                 <img src="/imgs/or.png" alt="img">
                             @endif
@@ -134,7 +142,7 @@
                         <div class="p-txt">
                             {{ $post->text }}
                         </div>
-                        <div class="p-img"> <img src="/storage/postfiles/{{ $user->username . '/' . $post->slug }}/0.png"
+                        <div class="p-img"> <img src="/storage/postfiles/{{ $user->id . '/' . $post->slug }}/0.png"
                                 alt="post image"></div>
                     </div>
                 </a>
@@ -155,31 +163,32 @@
                     {{ __('general.norecoms') }}
                 @else
                     @foreach ($user->recomendations as $recom)
-                    <a href="{{ route('user.show', $recom) }}"><div class="pet">
-                                @if (File::exists(public_path('/storage/pfp/' . $recom->username . '.png')))
-                                    <img src="/storage/pfp/{{ $recom->username }}.png" alt="img">
+                        <a href="{{ route('user.show', $recom) }}">
+                            <div class="pet">
+                                @if (File::exists(public_path('/storage/pfp/' . $recom->id . '.png')))
+                                    <img src="/storage/pfp/{{ $recom->id }}.png" alt="img">
                                 @else
                                     <img src="/imgs/or.png" alt="img">
                                 @endif
                                 &#64;{{ $recom->username }}
-                            </div></a>
+                            </div>
+                        </a>
                     @endforeach
                 @endif
             </div>
+            <?php $visibles = 0; ?>
             @if ($user->type != 'group')
                 <div class="pets">
                     <h3>{{ __('general.pets') }}</h3>
                     @if (count($user->pets) == 0)
                         {{ __('general.nopets') }}
                     @else
-                        <?php $visibles = 0; ?>
                         @foreach ($user->pets as $pet)
                             @if ($pet->visibility)
                                 <?php $visibles++; ?>
                                 <div class="pet">
                                     @if ($pet->deathdate != null)
-                                        <img class="memorialpic"
-                                            src="/storage/petpics/{{ $user->username . '/' . $pet->name }}.png"
+                                        <img class="memorialpic" src="/storage/petpics/{{ $user->id . '/' . $pet->name }}.png"
                                             alt=""><span><i class="fa-solid fa-ribbon"></i> {{ $pet->name }} -
                                             @switch($pet->type)
                                                 @case('dog')
@@ -219,7 +228,7 @@
                                                 @break
 
                                                 @case('other')
-                                                    {{ __('general.other') }}
+                                                    {{ __('general.others') }}
                                                 @break
                                             @endswitch <br><span class="memorial"> (
                                                 @if ($pet->birthdate == null)
@@ -234,7 +243,7 @@
                                             </span></span>
                                 </div>
                             @else
-                                <img src="/storage/petpics/{{ $user->username . '/' . $pet->name }}.png"
+                                <img src="/storage/petpics/{{ $user->id . '/' . $pet->name }}.png"
                                     alt="">{{ $pet->name }} - @switch($pet->type)
                                     @case('dog')
                                         {{ __('general.dog') }}
@@ -273,7 +282,7 @@
                                     @break
 
                                     @case('other')
-                                        {{ __('general.other') }}
+                                        {{ __('general.others') }}
                                     @break
                                 @endswitch
                 </div>
@@ -288,4 +297,15 @@
         @endif
         </div>
         </div>
+
+        <script>
+            function full(ImgLink) {
+                document.getElementById('full').src = ImgLink;
+                document.getElementById('fullimg').style.display = "flex";
+            }
+
+            function closeimg() {
+                document.getElementById('fullimg').style.display = "none";
+            }
+        </script>
     @endsection

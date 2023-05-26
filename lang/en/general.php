@@ -90,4 +90,8 @@ return [
     'inicia' => 'Log in',
     'users' => 'Users',
     'posts' => 'Posts',
+    'petpic' => 'Add a pic',
+    'saved' => 'Saved succesfully',
+    'edit' => 'Edit',
+    'addd' => 'Add'
 ];

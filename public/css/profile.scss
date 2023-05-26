@@ -14,7 +14,7 @@ $v3: #5a6743;
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: .5em;
     width: 98%;
-    min-height: 80vh;
+    min-height: 90vh;
     max-height: 90vh;
     /* margin: 0 1em 1em 1em; */
 }
@@ -24,9 +24,15 @@ $v3: #5a6743;
     overflow-y: scroll;
     overflow-x: hidden;
 
+    .posts {
+        flex-direction: column-reverse;
+        height: fit-content;
+        margin-bottom: 1em;
+    }
+
     .profile {
         border: 1px solid $main;
-        background-color: $v00;
+        background-color: $blanco;
         padding: 1em;
         margin-right: 1em;
         margin-bottom: .5em;
@@ -55,6 +61,9 @@ $v3: #5a6743;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
+            max-width: 15em;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             .admin,
             .admin i {
@@ -128,20 +137,24 @@ $v3: #5a6743;
 
     .recoms,
     .pets {
+        overflow: hidden;
         border: 2px solid $main;
         /* background-color: $main; */
         padding: .5em;
         margin: .5em;
         text-transform: capitalize;
-        
-        .pet{
+
+        .pet {
             display: flex;
             align-items: center;
             margin: .5em 0;
             padding: .3em;
-            img{
+            overflow: hidden;
+            img {
                 height: 3em;
                 width: 3em;
+                min-width: 3em;
+                min-height: 3em;
                 border-radius: 100%;
                 margin-right: .5em;
             }
@@ -152,11 +165,11 @@ $v3: #5a6743;
             color: #434343;
         }
 
-        .memorialpic{
+        .memorialpic {
             filter: grayscale(100%);
         }
 
-        .pet:hover{
+        .pet:hover {
             background-color: $v0;
         }
     }
@@ -258,15 +271,59 @@ $v3: #5a6743;
     flex-wrap: nowrap;
     overflow-x: scroll;
 
-    img {
+    .pic {
+        overflow: hidden;
+        cursor: pointer;
+        height: 10em;
         width: calc(95%/3);
         margin: 0 .5em;
         border: .5px solid $main;
         margin-bottom: .5em;
+
+        img {
+            height: 100%;
+            width: 100%;
+
+
+        }
+
+        img:hover {
+            transform: scale(110%);
+            transition: .3s ease-in-out;
+        }
     }
 
-    img:hover {
-        transform: scale(110%);
-        transition: .3s ease-in-out;
+
+}
+
+#fullimg {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    z-index: 10;
+}
+
+#full {
+    max-width: 80%;
+    z-index: 10;
+    max-height: 80%;
+}
+
+#close {
+    position: absolute;
+    top: 3em;
+    right: 3em;
+    cursor: pointer;
+
+    i {
+        color: white;
+        font-size: 2em;
     }
 }

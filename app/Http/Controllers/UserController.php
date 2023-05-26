@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Message;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditUserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+
 class UserController extends Controller
 {
      /**
@@ -40,8 +43,8 @@ class UserController extends Controller
     {
         if(Auth::check()){
             if($user->type == 'group'){
-                if(File::isDirectory(storage_path('app/public/groupfiles/'. $user->username))){
-                    $files = File::allfiles(storage_path('app/public/groupfiles/'. $user->username));
+                if(File::isDirectory(storage_path('app/public/groupfiles/'. $user->id))){
+                    $files = File::allfiles(storage_path('app/public/groupfiles/'. $user->id));
                 } else {
                     $files = null;
                 }
@@ -68,42 +71,53 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(EditUserRequest $request, User $user)
     {
 
-        if($request->file('pfp') != null && File::exists(public_path('/storage/pfp/' . $user->username . '.png'))){
-            Storage::delete('public/pfp', $user->username.'.png');
+        if($request->file('pfp') != null && File::exists(public_path('/storage/pfp/' . $user->id . '.png'))){
+            Storage::delete('public/pfp', $user->id.'.png');
         }
 
-        if($request->get('name') != null)
         $user->name = $request->get('name');
 
-        if($request->get('username') != null)
-        $user->username = $request->get('username');
-
-        if($request->get('email') != null)
-        $user->email = $request->get('email');
+        if($request->get('username') != null){
+            $numusers = User::where('username', '=', $request->get('username'))->get();
+            if($user->username != $request->get('username') && count($numusers)==0)
+                $user->username = $request->get('username');
+        }
+        
+        if($request->get('email') != null){
+            $numemail = User::where('email', '=', $request->get('email'))->get();
+            if($user->email != $request->get('email') && count($numemail)==0)
+                $user->email = $request->get('email');
+        }
 
         if($request->file('pfp') != null){
-            $request->file('pfp')->storeAs('public/pfp', $user->username.'.png');
+            $request->file('pfp')->storeAs('public/pfp', $user->id.'.png');
         }
 
         if($request->get('password') != null)
             $user->password = Hash::make($request->get('password'));
 
             $user->bio = $request->get('bio');
-            
             $user->save();
-            return redirect()->route('users.show', Auth::user()->username);
+            return redirect()->route('users.show', $user->username);
+            
         }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
     {
-        File::deleteDirectory(storage_path('app/public/groupsfiles/'. $user->username));
+        File::deleteDirectory(storage_path('app/public/groupsfiles/'. $user->id));
         Storage::delete('public/pfp/'. $user->username.'.png');
+        $delmessages = Message::where('user_id', $user->id)->get();
+        foreach($delmessages as $delmess){
+            $delmess->delete();
+        }
+
         $user->delete();
 
         return redirect()->route('home');
@@ -147,14 +161,14 @@ class UserController extends Controller
 
                 if($request->hasFile('photo'))
                 {
-                    if(File::isDirectory(storage_path('app/public/groupfiles/'. Auth::user()->username))){
-                        $num = count( File::allfiles(storage_path('app/public/groupfiles/'. Auth::user()->username)));
+                    if(File::isDirectory(storage_path('app/public/groupfiles/'. Auth::user()->id))){
+                        $num = count( File::allfiles(storage_path('app/public/groupfiles/'. Auth::user()->id)));
                     } else {
                         $num = 0;
                     }
                     
                     foreach ($files as $file) {
-                        $file->storeAs('public/groupfiles/' . Auth::user()->username . '/' . $num . '.png');
+                        $file->storeAs('public/groupfiles/' . Auth::user()->id . '/' . $num . '.png');
                         $num++;
     
                     }

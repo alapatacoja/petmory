@@ -20,6 +20,10 @@ $v3: #5a6743;
     padding: .5em;
     border-radius: 50px; */
 
+    .input:nth-child(2n) {
+        justify-content: end;
+    }
+
     .info {
         /* background-color: red; */
         /* background-color: red; */
@@ -113,104 +117,105 @@ $v3: #5a6743;
 .form {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-
-    .input {
-        display: flex;
-        flex-wrap: wrap;
+    justify-content: space-between;    
+    .input{
         width: 50%;
-        margin-bottom: .5em;
-
-        select {
-            outline: none;
-            height: fit-content;
-
-
-        }
-
-        option:hover {
-            background-color: #198754;
-            color: #fff;
-        }
-
-
     }
+}
 
-    .full {
-        width: 100%;
+.input {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .5em;
 
-        input {
-            border: none !important;
-            box-shadow: none !important;
-            height: fit-content !important;
-        }
-    }
-
-    .input:nth-child(2n) {
-        justify-content: end;
-    }
-
-    .input label {
-        width: 95%;
-        margin-bottom: .3em;
-    }
-
-    .input input,
     select {
-        height: 1.5em;
-        width: 95%;
-        padding: 0.2em .3em;
-        border: 1px solid $main;
         outline: none;
+        height: fit-content;
+
+
     }
 
-    .input input:is(:focus, :valid),
-    select:is(:focus, :valid) {
-        box-shadow: 0 2px 0 $v0;
-    }
-
-    input[type=file] {
-        border: 1px solid $main;
-    }
-
-    input[type=file]::file-selector-button {
-        margin-right: 20px;
-        padding: .3em .8em;
-        border: none;
-        background: $v1;
+    option:hover {
+        background-color: #198754;
         color: #fff;
+    }
+
+
+}
+
+.full {
+    width: 100%;
+
+    input {
+        border: none !important;
+        box-shadow: none !important;
+        height: fit-content !important;
+    }
+}
+
+
+
+.input label {
+    width: 95%;
+    margin-bottom: .3em;
+}
+
+.input input,
+select, textarea {
+    height: 1.5em;
+    width: 95%;
+    padding: 0.2em .3em;
+    border: 1px solid $main;
+    outline: none;
+}
+
+.input input:is(:focus, :valid),
+select:is(:focus, :valid),  textarea:is(:focus, :valid){
+    box-shadow: 0 2px 0 $v0;
+}
+
+input[type=file] {
+    border: 1px solid $main;
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    padding: .3em .8em;
+    border: none;
+    background: $v1;
+    color: #fff;
+    cursor: pointer;
+
+}
+
+input[type=file]::file-selector-button:hover {
+    background-color: $v2;
+
+}
+
+.alert {
+    font-size: .8em;
+}
+
+.buttons{
+    display: flex;
+}
+
+.button-subm {
+    width: 100%;
+
+    button {
+        width: 10em;
+        padding: .5em;
+        background-color: $main;
+        border: none;
+        border-radius: 10px;
+        color: white;
         cursor: pointer;
-
     }
 
-    input[type=file]::file-selector-button:hover {
-        background-color: $v2;
-
-    }
-
-    .alert {
-        font-size: .8em;
-    }
-
-    .buttons{
-        display: flex;
-    }
-    .button-subm {
-        width: 100%;
-
-        button {
-            width: 10em;
-            padding: .5em;
-            background-color: $main;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: $v1;
-        }
+    button:hover {
+        background-color: $v1;
     }
 }
 
@@ -225,6 +230,19 @@ $v3: #5a6743;
     .form{
         padding: 1em 1em 2em 2em;
         border: .3em solid $main;
+
+        .buttons{
+            display: flex;
+            margin-top: 1em;
+            flex-direction: row;
+            justify-content: space-around;
+            .button-subm{
+                width: fit-content;
+            }
+        }
+        input[type=file] {
+            border: none;
+        }
 
         h2 {
             color: $v3;
@@ -285,4 +303,9 @@ $v3: #5a6743;
 
 .small{
     font-size: small;
+    margin-bottom: 1em;
+}
+
+textarea{
+    resize: none;
 }

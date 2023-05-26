@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostRequest extends FormRequest
+class EditPetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,11 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:5'],
-            'type' => 'required|in:post,question,daily' ,
-            'photo' => [ 'nullable'],
-            'text' => 'required'
+                'name' => ['required', 'min:1'],
+                'type' => 'required|in:dog,cat,bird,ferret,rodent,insects/bugs,reptiles,fish,farm,other',
+                'petpic' => [ 'nullable', 'image'],
+                'birthdate' => ['nullable', 'date', 'before:today'],
+                'deathhdate' => ['nullable', 'date', 'before:today'],
         ];
     }
 }

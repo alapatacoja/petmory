@@ -38,12 +38,13 @@ class LoginController extends Controller
         $user->type = $request->get('type');
         $user->bio = null;
         $user->url = null;
-        if($request->file('pfp') != null)
-            $request->file('pfp')->storeAs('public/pfp', $user->username.'.png');
+        
 
         $user->save();
 
         Auth::login(($user));
+        if($request->file('pfp') != null)
+            $request->file('pfp')->storeAs('public/pfp', Auth::user()->id.'.png');
 
         if($user->type == 'group')
             return redirect()->route('user.show', Auth::user());

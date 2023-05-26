@@ -37,7 +37,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         if($request->get('text') == null)
-            print_r($request->get('text'));
+            return redirect()->route('home');
         else{
             $message = new Message();
             $message->user_id = Auth::user()->id;

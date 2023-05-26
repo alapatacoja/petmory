@@ -90,5 +90,9 @@ return [
         'cuenta' => '¿Ya tienes cuenta?', 
         'registrate' => 'Regístrate',
         'nocuenta' => "¿No tienes cuenta?",
-        'inicia' => 'Inicia sesión'
+        'inicia' => 'Inicia sesión',
+        'petpic' => 'Añade una imagen',
+        'saved' => 'Guardada correctamente',
+        'edit' => 'Editar',
+        'addd' => 'Añadir'
     ];

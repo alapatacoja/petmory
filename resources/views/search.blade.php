@@ -10,8 +10,8 @@
                 @endif
                 <div class="user">
                     <div class="pfp">
-                        @if (File::exists(public_path('/storage/pfp/' . $user->username . '.png')))
-                            <img src="/storage/pfp/{{ $user->username }}.png" alt="img">
+                        @if (File::exists(public_path('/storage/pfp/' . $user->id . '.png')))
+                            <img src="/storage/pfp/{{ $user->id }}.png" alt="img">
                         @else
                             <img src="/imgs/or.png" alt="img">
                         @endif
@@ -41,8 +41,8 @@
                 @endif
                 <div class="post">
                     <div class="pfp">
-                        @if (File::exists(public_path('/storage/pfp/' . $post->user->username . '.png')))
-                            <img src="/storage/pfp/{{ $post->user->username }}.png" alt="img">
+                        @if (File::exists(public_path('/storage/pfp/' . $post->user->id . '.png')))
+                            <img src="/storage/pfp/{{ $post->user->id }}.png" alt="img">
                         @else
                             <img src="/imgs/or.png" alt="img">
                         @endif
@@ -67,10 +67,10 @@
                         </div>
                     </div>
                     <div class="p-txt">
-                        {{ $post->text }}
+                        {!! nl2br(e($post->text)) !!}
                     </div>
                     <div class="p-img"> <img
-                            src="/storage/postfiles/{{ $post->user->username . '/' . $post->slug }}/0.png"
+                            src="/storage/postfiles/{{ $post->user->id . '/' . $post->slug }}/0.png"
                             alt="post image">
                     </div>
                 </div>
