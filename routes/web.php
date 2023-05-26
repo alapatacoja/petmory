@@ -77,10 +77,3 @@ Route::post('addlinks', [UserController::class, 'addlinks'])->name('addlinks');
 Route::get('delposts', [HomeController::class, 'delposts'])->name('delposts');
 
 Route::get('back', [HomeController::class, 'back'])->name('back');
-
-
-/* ----------------------------------------- */
-Route::get('/prueba', function () {
-    
-    return view('pruebas');
-})->name('prueba');
